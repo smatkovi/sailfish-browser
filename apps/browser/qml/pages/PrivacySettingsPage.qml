@@ -15,11 +15,31 @@ import Sailfish.Silica 1.0
 import Nemo.Configuration 1.0
 import Sailfish.Browser 1.0
 
-Page {
+Dialog {
     id: page
 
     property var remorse
     property var previousPage
+
+    canAccept: clearHistory.checked
+               || clearCookiesAndSiteData.checked
+               || clearSavedPasswords.checked
+               || clearCache.checked
+               || clearBookmarks.checked
+               || clearSitePermissions.checked
+    acceptDestination: Qt.resolvedUrl("components/PrivacySettingsConfirmDialog.qml")
+    acceptDestinationAction: PageStackAction.Replace
+
+    onAcceptPendingChanged: {
+        acceptDestinationInstance.historyEnabled = clearHistory.checked
+        acceptDestinationInstance.cookieAndSiteDataEnabled = clearCookiesAndSiteData.checked
+        acceptDestinationInstance.passwordsEnabled = clearSavedPasswords.checked
+        acceptDestinationInstance.cacheEnabled = clearCache.checked
+        acceptDestinationInstance.bookmarksEnabled = clearBookmarks.checked
+        acceptDestinationInstance.sitePermissionsEnabled = clearSitePermissions.checked
+        acceptDestinationInstance.historyPeriod = historyErasingComboBox.currentItem.period
+        acceptDestinationInstance.acceptDestination = previousPage
+    }
 
     SilicaFlickable {
         anchors.fill: parent
@@ -30,10 +50,13 @@ Page {
 
             width: parent.width
 
-            PageHeader {
+            DialogHeader {
                 //: Clear private data page header
                 //% "Clear private data"
                 title: qsTrId("settings_browser-ph-clear_private_data")
+
+                //% "Clear"
+                acceptText: qsTrId("sailfish_browser-he-clear")
             }
 
             Column {
@@ -125,38 +148,6 @@ Page {
                     //% "Site permissions"
                     text: qsTrId("settings_browser-la-clear_site_permissions")
                     checked: true
-                }
-
-                // Spacer between Button and switches
-                Item {
-                    width: parent.width
-                    height: Theme.paddingLarge
-                }
-
-                Button {
-                    //: Button for clearing selected private data items.
-                    //% "Clear"
-                    text: qsTrId("settings_browser-bt-clear")
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    enabled: clearHistory.checked
-                             || clearCookiesAndSiteData.checked
-                             || clearSavedPasswords.checked
-                             || clearCache.checked
-                             || clearBookmarks.checked
-                             || clearSitePermissions.checked
-
-                    onClicked: {
-                        var page = pageStack.push(Qt.resolvedUrl("components/PrivacySettingsConfirmDialog.qml"), {
-                                                      historyEnabled: clearHistory.checked,
-                                                      cookieAndSiteDataEnabled: clearCookiesAndSiteData.checked,
-                                                      passwordsEnabled: clearSavedPasswords.checked,
-                                                      cacheEnabled: clearCache.checked,
-                                                      bookmarksEnabled: clearBookmarks.checked,
-                                                      sitePermissionsEnabled: clearSitePermissions.checked,
-                                                      historyPeriod: historyErasingComboBox.currentItem.period,
-                                                      acceptDestination: previousPage
-                                                  })
-                    }
                 }
             }
         }
