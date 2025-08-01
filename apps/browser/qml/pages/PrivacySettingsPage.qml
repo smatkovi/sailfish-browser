@@ -68,7 +68,7 @@ Dialog {
 
                     //% "History"
                     text: qsTrId("settings_browser-la-clear_history")
-                    checked: true
+                    checked: false
 
                     //: Description for clearing history. This will clear history and tabs.
                     //% "Clears history and open tabs"
@@ -124,7 +124,7 @@ Dialog {
 
                     //% "Saved passwords"
                     text: qsTrId("settings_browser-la-clear_passwords")
-                    checked: true
+                    checked: false
                 }
 
                 TextSwitch {
@@ -140,7 +140,7 @@ Dialog {
 
                     //% "Bookmarks"
                     text: qsTrId("settings_browser-la-clear_bookmarks")
-                    checked: true
+                    checked: false
                 }
 
                 TextSwitch {
@@ -148,7 +148,7 @@ Dialog {
 
                     //% "Site permissions"
                     text: qsTrId("settings_browser-la-clear_site_permissions")
-                    checked: true
+                    checked: false
                 }
             }
         }
