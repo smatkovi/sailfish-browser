@@ -77,6 +77,7 @@ Dialog {
 
                 ComboBox {
                      id: historyErasingComboBox
+                     enabled: clearHistory.checked
 
                      width: parent.width
                      //% "Clear browser history for"
