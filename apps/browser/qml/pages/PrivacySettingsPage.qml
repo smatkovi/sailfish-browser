@@ -68,7 +68,7 @@ Dialog {
 
                     //% "History"
                     text: qsTrId("settings_browser-la-clear_history")
-                    checked: false
+                    checked: true
 
                     //: Description for clearing history. This will clear history and tabs.
                     //% "Clears history and open tabs"
