@@ -41,13 +41,25 @@ Dialog {
         acceptDestinationInstance.acceptDestination = previousPage
     }
 
+    ConfigurationGroup {
+        id: config
+        path: "/apps/sailfish-browser/actions"
+
+        property bool clear_history: true
+        property int clear_history_period: 0  // combo index
+        property bool clear_cookies_and_site_data: true
+        property bool clear_passwords: false
+        property bool clear_cache: true
+        property bool clear_bookmarks: false
+        property bool clear_site_permissions: false
+    }
+
     SilicaFlickable {
         anchors.fill: parent
         contentHeight: contentColumn.height
 
         Column {
             id: contentColumn
-
             width: parent.width
 
             DialogHeader {
@@ -68,16 +80,26 @@ Dialog {
 
                     //% "History"
                     text: qsTrId("settings_browser-la-clear_history")
-                    checked: true
 
                     //: Description for clearing history. This will clear history and tabs.
                     //% "Clears history and open tabs"
                     description: qsTrId("settings_browser-la-clear_history_description")
+
+                    checked: config.clear_history
+                    automaticCheck: false
+                    onClicked: config.clear_history = !config.clear_history
                 }
 
                 ComboBox {
                      id: historyErasingComboBox
                      enabled: clearHistory.checked
+                     currentIndex: config.clear_history_period
+
+                     onCurrentIndexChanged: {
+                         if (config.clear_history_period != currentIndex) {
+                             config.clear_history_period = currentIndex
+                         }
+                     }
 
                      width: parent.width
                      //% "Clear browser history for"
@@ -116,7 +138,10 @@ Dialog {
 
                     //% "Cookies and site data"
                     text: qsTrId("settings_browser-la-clear_cookies_and_site_data")
-                    checked: true
+
+                    checked: config.clear_cookies_and_site_data
+                    automaticCheck: false
+                    onClicked: config.clear_cookies_and_site_data = !config.clear_cookies_and_site_data
                 }
 
                 TextSwitch {
@@ -124,7 +149,10 @@ Dialog {
 
                     //% "Saved passwords"
                     text: qsTrId("settings_browser-la-clear_passwords")
-                    checked: false
+
+                    checked: config.clear_passwords
+                    automaticCheck: false
+                    onClicked: config.clear_passwords = !config.clear_passwords
                 }
 
                 TextSwitch {
@@ -132,7 +160,10 @@ Dialog {
 
                     //% "Cache"
                     text: qsTrId("settings_browser-la-clear_cache")
-                    checked: true
+
+                    checked: config.clear_cache
+                    automaticCheck: false
+                    onClicked: config.clear_cache = !config.clear_cache
                 }
 
                 TextSwitch {
@@ -140,7 +171,10 @@ Dialog {
 
                     //% "Bookmarks"
                     text: qsTrId("settings_browser-la-clear_bookmarks")
-                    checked: false
+
+                    checked: config.clear_bookmarks
+                    automaticCheck: false
+                    onClicked: config.clear_bookmarks = !config.clear_bookmarks
                 }
 
                 TextSwitch {
@@ -148,7 +182,10 @@ Dialog {
 
                     //% "Site permissions"
                     text: qsTrId("settings_browser-la-clear_site_permissions")
-                    checked: false
+
+                    checked: config.clear_site_permissions
+                    automaticCheck: false
+                    onClicked: config.clear_site_permissions = !config.clear_site_permissions
                 }
             }
         }
