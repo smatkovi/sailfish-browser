@@ -89,5 +89,6 @@
   "duckduckgo.com": "Mozilla/5.0 (Mobile; rv:91.0) Gecko/91.0 Firefox/91.0",
   "openai.com": "Mozilla/5.0 (Mobile; rv:91.0) Gecko/91.0 Firefox/91.0",
   "fedoraproject.org": "Mozilla/5.0 (Mobile; rv:91.0) Gecko/91.0 Firefox/91.0",
-  "nextcloud.com": "Mozilla/5.0 (Mobile; rv:91.0) Gecko/91.0 Firefox/91.0"
+  "nextcloud.com": "Mozilla/5.0 (Mobile; rv:91.0) Gecko/91.0 Firefox/91.0",
+  "firefox.settings.services.mozilla.com": "Mozilla/5.0 (Mobile; rv:91.0) Gecko/91.0 SailfishBrowser/1.0"
 }
