@@ -389,7 +389,7 @@ Page {
         id: searchEngineConfig
 
         key: "/apps/sailfish-browser/settings/search_engine"
-        defaultValue: "Google"
+        defaultValue: "Ecosia"
     }
 
     ConfigurationValue {

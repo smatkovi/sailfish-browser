@@ -114,7 +114,7 @@ void SettingManager::calculateSiteDataSize(QJSValue callback)
 void SettingManager::setSearchEngine()
 {
     if (m_searchEnginesInitialized) {
-        QVariant searchEngine = m_searchEngineConfItem->value(QVariant(QString("Google")));
+        QVariant searchEngine = m_searchEngineConfItem->value(QVariant(QString("Ecosia")));
         SailfishOS::WebEngineSettings *webEngineSettings = SailfishOS::WebEngineSettings::instance();
         webEngineSettings->setPreference(QString("browser.search.defaultenginename"), searchEngine);
 
