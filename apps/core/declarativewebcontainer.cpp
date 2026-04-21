@@ -101,6 +101,10 @@ DeclarativeWebContainer::DeclarativeWebContainer(QWindow *parent)
 
     connect(this, &DeclarativeWebContainer::foregroundChanged,
             this, &DeclarativeWebContainer::updateWindowFlags);
+    connect(this, &QWindow::xChanged,
+            this, &DeclarativeWebContainer::updateMozWindowScreenPosition);
+    connect(this, &QWindow::yChanged,
+            this, &DeclarativeWebContainer::updateMozWindowScreenPosition);
 
     qApp->installEventFilter(this);
 
@@ -766,6 +770,7 @@ void DeclarativeWebContainer::exposeEvent(QExposeEvent*)
 
     if (isExposed() && !alreadyExposed) {
         initialize();
+        updateMozWindowScreenPosition();
 
         if (m_chromeWindow) {
             m_chromeWindow->update();
@@ -981,6 +986,7 @@ void DeclarativeWebContainer::initialize()
         connect(m_mozWindow.data(), &QMozWindow::compositorCreated,
                 this, &DeclarativeWebContainer::postClearWindowSurfaceTask);
         m_mozWindow->reserve();
+        updateMozWindowScreenPosition();
         m_mozWindow->setReadyToPaint(false);
         if (m_chromeWindow) {
             updateContentOrientation(m_chromeWindow->contentOrientation());
@@ -1035,6 +1041,13 @@ void DeclarativeWebContainer::initialize()
 
     if (initialUrl) {
         emit hasInitialUrlChanged();
+    }
+}
+
+void DeclarativeWebContainer::updateMozWindowScreenPosition()
+{
+    if (m_mozWindow) {
+        m_mozWindow->setScreenPosition(position());
     }
 }
 

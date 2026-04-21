@@ -41,13 +41,15 @@ Shared.Background {
     property bool _showFindInPage
     property bool _showUrlEntry
     readonly property bool _topGap: _showUrlEntry || _showFindInPage
+    readonly property bool _fullscreenCutout: webView.contentFullscreen
+                                              && browserPage.cutoutMode === CutoutMode.FullScreen
     property int _biggestCorner: Math.max(Screen.topLeftCorner.radius,
                                           Screen.topRightCorner.radius,
                                           Screen.bottomLeftCorner.radius,
                                           Screen.bottomRightCorner.radius)
     property int horizontalMargin: Math.max(Theme.paddingLarge,
                                             _biggestCorner * 0.7,
-                                            browserPage.isLandscape
+                                            browserPage.isLandscape && _fullscreenCutout
                                             ? (Screen.topCutout.height + Theme.paddingSmall)
                                             : 0)
 
@@ -127,7 +129,9 @@ Shared.Background {
         overlay: overlay
         portrait: browserPage.isPortrait
         webView: overlay.webView
-        fullscreenGap: isPortrait ? (overlay.toolBar.rowHeight + Screen.topCutout.height) : 0
+        fullscreenGap: isPortrait && overlay._fullscreenCutout
+                       ? (overlay.toolBar.rowHeight + Screen.topCutout.height)
+                       : 0
         infoHeight: Math.max(0,
                              webView.fullscreenHeight
                              - overlay.toolBar.certOverlayPreferedHeight - overlay.toolBar.rowHeight)

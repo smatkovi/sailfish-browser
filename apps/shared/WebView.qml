@@ -36,6 +36,57 @@ WebContainer {
     property bool findInPageHasResult
     property bool canShowSelectionMarkers: true
 
+    function _primarySafeAreaInsets() {
+        return {
+            top: Math.max(0,
+                          Screen.topCutout.y + Screen.topCutout.height,
+                          Screen.topLeftCorner.y,
+                          Screen.topRightCorner.y),
+            right: Math.max(0,
+                            Screen.width - Screen.topRightCorner.x,
+                            Screen.width - Screen.bottomRightCorner.x),
+            bottom: Math.max(0,
+                             Screen.height - Screen.bottomLeftCorner.y,
+                             Screen.height - Screen.bottomRightCorner.y),
+            left: Math.max(0,
+                           Screen.topLeftCorner.x,
+                           Screen.bottomLeftCorner.x)
+        }
+    }
+
+    function _rotatedSafeAreaInsets(orientation) {
+        var safeAreaInsets = _primarySafeAreaInsets()
+        switch (orientation) {
+        case Qt.LandscapeOrientation:
+            return {
+                top: safeAreaInsets.left,
+                right: safeAreaInsets.top,
+                bottom: safeAreaInsets.right,
+                left: safeAreaInsets.bottom
+            }
+        case Qt.InvertedPortraitOrientation:
+            return {
+                top: safeAreaInsets.bottom,
+                right: safeAreaInsets.left,
+                bottom: safeAreaInsets.top,
+                left: safeAreaInsets.right
+            }
+        case Qt.InvertedLandscapeOrientation:
+            return {
+                top: safeAreaInsets.right,
+                right: safeAreaInsets.bottom,
+                bottom: safeAreaInsets.left,
+                left: safeAreaInsets.top
+            }
+        default:
+            return safeAreaInsets
+        }
+    }
+
+    readonly property var _safeAreaInsets: _rotatedSafeAreaInsets(pendingWebContentOrientation === Qt.PrimaryOrientation
+                                                                  ? Qt.PortraitOrientation
+                                                                  : pendingWebContentOrientation)
+
     property var resourceController: ResourceController {
         webPage: contentItem
         background: !webView.visible
@@ -161,6 +212,10 @@ WebContainer {
             readonly property bool activeWebPage: container.tabId == tabId
             property bool userHasDraggedWhileLoading
             property string favicon
+            safeAreaInsetTop: webView._safeAreaInsets.top
+            safeAreaInsetRight: webView._safeAreaInsets.right
+            safeAreaInsetBottom: webView._safeAreaInsets.bottom
+            safeAreaInsetLeft: webView._safeAreaInsets.left
 
             property QtObject pickerOpener: Pickers.PickerOpener {
                 pageStack: window.pageStack

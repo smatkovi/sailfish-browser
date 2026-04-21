@@ -61,8 +61,9 @@ Page {
         window.activate()
     }
 
-    // for time being make this fullscreen. TODO: avoid drawing over cutout and corner areas.
-    cutoutMode: CutoutMode.FullScreen
+    cutoutMode: webView.contentItem && webView.contentItem.viewportFit === "cover"
+                ? CutoutMode.FullScreen
+                : CutoutMode.AvoidLandscapeCutout
     background: null
     onStatusChanged: {
         if (overlay.enteringNewTabUrl || webView.tabModel.count === 0) {

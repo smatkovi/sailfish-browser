@@ -230,6 +230,7 @@ private slots:
 
     void onLastWindowDestroyed();
     void updateWindowFlags();
+    void updateMozWindowScreenPosition();
 
     // QMozWindow related slots:
     void createGLContext();

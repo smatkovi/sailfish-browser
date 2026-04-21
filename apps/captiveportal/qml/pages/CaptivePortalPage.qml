@@ -29,8 +29,9 @@ Page {
     property alias webView: webView
     property alias inputRegion: inputRegion
 
-    // for time being make this fullscreen. TODO: avoid drawing over cutout and corner areas.
-    cutoutMode: CutoutMode.FullScreen
+    cutoutMode: webView.contentItem && webView.contentItem.viewportFit === "cover"
+                ? CutoutMode.FullScreen
+                : CutoutMode.AvoidLandscapeCutout
 
     function load(url, title) {
         webView.load(url, title)
