@@ -54,24 +54,49 @@ WebContainer {
         }
     }
 
-    function _rotatedSafeAreaInsets(orientation) {
-        var safeAreaInsets = _primarySafeAreaInsets()
-        switch (orientation) {
-        case Qt.LandscapeOrientation:
+    function _primaryCutoutInsets() {
+        return {
+            top: Math.max(0, Screen.topCutout.y + Screen.topCutout.height),
+            right: 0,
+            bottom: 0,
+            left: 0
+        }
+    }
+
+    function _qtScreenOrientation(pageOrientation) {
+        switch (pageOrientation) {
+        case Orientation.Landscape:
+            return Qt.LandscapeOrientation
+        case Orientation.PortraitInverted:
+            return Qt.InvertedPortraitOrientation
+        case Orientation.LandscapeInverted:
+            return Qt.InvertedLandscapeOrientation
+        default:
+            return Qt.PortraitOrientation
+        }
+    }
+
+    function _rotatedInsets(safeAreaInsets, pageOrientation) {
+        switch (QuickWindow.Screen.angleBetween(_qtScreenOrientation(pageOrientation),
+                                                QuickWindow.Screen.primaryOrientation)) {
+        case 270:
+        case -90:
             return {
                 top: safeAreaInsets.left,
                 right: safeAreaInsets.top,
                 bottom: safeAreaInsets.right,
                 left: safeAreaInsets.bottom
             }
-        case Qt.InvertedPortraitOrientation:
+        case 180:
+        case -180:
             return {
                 top: safeAreaInsets.bottom,
                 right: safeAreaInsets.left,
                 bottom: safeAreaInsets.top,
                 left: safeAreaInsets.right
             }
-        case Qt.InvertedLandscapeOrientation:
+        case 90:
+        case -270:
             return {
                 top: safeAreaInsets.right,
                 right: safeAreaInsets.bottom,
@@ -83,9 +108,13 @@ WebContainer {
         }
     }
 
-    readonly property var _safeAreaInsets: _rotatedSafeAreaInsets(pendingWebContentOrientation === Qt.PrimaryOrientation
-                                                                  ? Qt.PortraitOrientation
-                                                                  : pendingWebContentOrientation)
+    readonly property int _pageOrientation: rotationHandler
+                                            ? rotationHandler.orientation
+                                            : Orientation.Portrait
+    readonly property var _safeAreaInsets: _primarySafeAreaInsets()
+    readonly property var hostSafeAreaInsets: _rotatedInsets(_primarySafeAreaInsets(), _pageOrientation)
+    readonly property var hostCutoutInsets: _rotatedInsets(_primaryCutoutInsets(), _pageOrientation)
+    readonly property bool coverViewportFit: contentItem && contentItem.viewportFit === "cover"
 
     property var resourceController: ResourceController {
         webPage: contentItem

@@ -105,6 +105,10 @@ DeclarativeWebContainer::DeclarativeWebContainer(QWindow *parent)
             this, &DeclarativeWebContainer::updateMozWindowScreenPosition);
     connect(this, &QWindow::yChanged,
             this, &DeclarativeWebContainer::updateMozWindowScreenPosition);
+    connect(this, &QWindow::widthChanged,
+            this, &DeclarativeWebContainer::updateMozWindowScreenPosition);
+    connect(this, &QWindow::heightChanged,
+            this, &DeclarativeWebContainer::updateMozWindowScreenPosition);
 
     qApp->installEventFilter(this);
 
@@ -814,9 +818,10 @@ void DeclarativeWebContainer::touchEvent(QTouchEvent *event)
     if (m_webPage && m_enabled && (!m_touchBlocked || event->type() != QEvent::TouchBegin)) {
         QList<QTouchEvent::TouchPoint> touchPoints = event->touchPoints();
         QTouchEvent mappedTouchEvent = *event;
+        const QPointF windowOffset(position());
 
         for (int i = 0; i < touchPoints.count(); ++i) {
-            QPointF pt = m_rotationHandler->mapFromScene(touchPoints.at(i).pos());
+            QPointF pt = m_rotationHandler->mapFromScene(touchPoints.at(i).pos() + windowOffset);
             touchPoints[i].setPos(pt);
         }
 
@@ -897,6 +902,19 @@ void DeclarativeWebContainer::classBegin()
 void DeclarativeWebContainer::componentComplete()
 {
     showFullScreen();
+
+    if (m_rotationHandler) {
+        connect(m_rotationHandler.data(), &QQuickItem::xChanged,
+                this, &DeclarativeWebContainer::updateMozWindowScreenPosition, Qt::UniqueConnection);
+        connect(m_rotationHandler.data(), &QQuickItem::yChanged,
+                this, &DeclarativeWebContainer::updateMozWindowScreenPosition, Qt::UniqueConnection);
+        connect(m_rotationHandler.data(), &QQuickItem::widthChanged,
+                this, &DeclarativeWebContainer::updateMozWindowScreenPosition, Qt::UniqueConnection);
+        connect(m_rotationHandler.data(), &QQuickItem::heightChanged,
+                this, &DeclarativeWebContainer::updateMozWindowScreenPosition, Qt::UniqueConnection);
+        connect(m_rotationHandler.data(), &QQuickItem::rotationChanged,
+                this, &DeclarativeWebContainer::updateMozWindowScreenPosition, Qt::UniqueConnection);
+    }
 
     if (m_initialized && !m_completed) {
         m_completed = true;
@@ -1047,7 +1065,12 @@ void DeclarativeWebContainer::initialize()
 void DeclarativeWebContainer::updateMozWindowScreenPosition()
 {
     if (m_mozWindow) {
-        m_mozWindow->setScreenPosition(position());
+        QPointF scenePosition(position());
+        if (m_rotationHandler) {
+            scenePosition = m_rotationHandler->mapToScene(QPointF(position()));
+        }
+        m_mozWindow->setSize(size());
+        m_mozWindow->setScreenPosition(scenePosition.toPoint());
     }
 }
 

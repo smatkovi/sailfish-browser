@@ -29,6 +29,13 @@ Column {
     property var bookmarked
     readonly property alias rowHeight: toolsRow.height
     readonly property int maxRowCount: 6
+    readonly property int biggestCorner: Math.max(Screen.topLeftCorner.radius,
+                                                  Screen.topRightCorner.radius,
+                                                  Screen.bottomLeftCorner.radius,
+                                                  Screen.bottomRightCorner.radius)
+    readonly property int baseContentMargin: Math.round(biggestCorner * 0.4)
+    property int leftContentMargin: baseContentMargin
+    property int rightContentMargin: baseContentMargin
 
     readonly property int horizontalOffset: largeScreen ? Theme.paddingLarge : Theme.paddingSmall
     readonly property int buttonPadding: largeScreen
@@ -132,14 +139,14 @@ Column {
     Row {
         id: toolsRow
 
-        property int biggestCorner: Math.max(Screen.topLeftCorner.radius,
-                                             Screen.topRightCorner.radius,
-                                             Screen.bottomLeftCorner.radius,
-                                             Screen.bottomRightCorner.radius)
-        // items have some padding of their own so don't mind a little overlap with the rounding
-        x: Math.round(biggestCorner * 0.4)
-        width: parent.width - 2*x
+        x: 0
+        width: parent.width
         height: browserPage.isPortrait ? scaledPortraitHeight : scaledLandscapeHeight
+
+        Item {
+            width: toolBarRow.leftContentMargin
+            height: parent.height
+        }
 
         // Container item for cross fading tabs, close, find in page button (and keep Row's width still).
         Item {
@@ -308,7 +315,13 @@ Column {
             readonly property bool down: pressed && containsMouse
 
             height: parent.height
-            width: toolsRow.width - (tabButton.width + stopButton.width + padlockIcon.width + backIcon.width + menuButton.width)
+            width: toolsRow.width - (toolBarRow.leftContentMargin
+                                     + tabButton.width
+                                     + stopButton.width
+                                     + padlockIcon.width
+                                     + backIcon.width
+                                     + menuButton.width
+                                     + toolBarRow.rightContentMargin)
             enabled: !showFindButtons
             _showPress: false
 
@@ -374,7 +387,7 @@ Column {
 
                 active: showFindButtons
                 height: parent.height
-                expandedWidth: (toolsRow.width - menuButton.width - tabButton.width) / 2
+                expandedWidth: touchArea.width / 2
                 icon {
                     source: "image://theme/icon-m-left"
                     anchors.horizontalCenterOffset: Theme.paddingLarge
@@ -444,6 +457,11 @@ Column {
                     showChrome()
                 }
             }
+        }
+
+        Item {
+            width: toolBarRow.rightContentMargin
+            height: parent.height
         }
     }
 }

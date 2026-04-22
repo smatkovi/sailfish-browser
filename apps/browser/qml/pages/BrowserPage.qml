@@ -61,9 +61,7 @@ Page {
         window.activate()
     }
 
-    cutoutMode: webView.contentItem && webView.contentItem.viewportFit === "cover"
-                ? CutoutMode.FullScreen
-                : CutoutMode.AvoidLandscapeCutout
+    cutoutMode: CutoutMode.FullScreen
     background: null
     onStatusChanged: {
         if (overlay.enteringNewTabUrl || webView.tabModel.count === 0) {
@@ -140,7 +138,16 @@ Page {
     Shared.WebView {
         id: webView
 
+        readonly property bool allowDisplayCutout: contentFullscreen || coverViewportFit
         enabled: overlay.animator.allowContentUse
+        x: allowDisplayCutout ? 0 : hostCutoutInsets.left
+        y: allowDisplayCutout ? 0 : hostCutoutInsets.top
+        width: browserPage.width - (allowDisplayCutout
+                                    ? 0
+                                    : (hostCutoutInsets.left + hostCutoutInsets.right))
+        height: browserPage.height - (allowDisplayCutout
+                                      ? 0
+                                      : (hostCutoutInsets.top + hostCutoutInsets.bottom))
         fullscreenHeight: portrait ? Screen.height : Screen.width
         portrait: browserPage.isPortrait
         maxLiveTabCount: maxliveTabs.value
@@ -171,7 +178,12 @@ Page {
             }
         }
 
-        onWebContentOrientationChanged: orientationFader.waitForWebContentOrientationChanged = false
+        onWebContentOrientationChanged: {
+            orientationFader.waitForWebContentOrientationChanged = false
+            if (contentItem) {
+                contentItem.reapplySafeAreaInsets()
+            }
+        }
 
         function applyContentOrientation(orientation) {
             orientationFader.waitForWebContentOrientationChanged = (contentItem && contentItem.active)

@@ -43,15 +43,24 @@ Shared.Background {
     readonly property bool _topGap: _showUrlEntry || _showFindInPage
     readonly property bool _fullscreenCutout: webView.contentFullscreen
                                               && browserPage.cutoutMode === CutoutMode.FullScreen
+    readonly property int topChromeInset: !webView.allowDisplayCutout && browserPage.isPortrait
+                                          ? webView.hostSafeAreaInsets.top
+                                          : 0
     property int _biggestCorner: Math.max(Screen.topLeftCorner.radius,
                                           Screen.topRightCorner.radius,
                                           Screen.bottomLeftCorner.radius,
                                           Screen.bottomRightCorner.radius)
+    readonly property int _baseChromeMargin: Math.max(Theme.paddingLarge, _biggestCorner * 0.7)
+    readonly property int leftChromeMargin: Math.max(_baseChromeMargin,
+                                                     webView.hostSafeAreaInsets.left)
+    readonly property int rightChromeMargin: Math.max(_baseChromeMargin,
+                                                      webView.hostSafeAreaInsets.right,
+                                                      browserPage.isLandscape && _fullscreenCutout
+                                                      ? (Screen.topCutout.height + Theme.paddingSmall)
+                                                      : 0)
     property int horizontalMargin: Math.max(Theme.paddingLarge,
-                                            _biggestCorner * 0.7,
-                                            browserPage.isLandscape && _fullscreenCutout
-                                            ? (Screen.topCutout.height + Theme.paddingSmall)
-                                            : 0)
+                                            leftChromeMargin,
+                                            rightChromeMargin)
 
     function loadPage(url, newTab) {
         if (url == "about:config") {
@@ -357,12 +366,13 @@ Shared.Background {
                 }
 
                 // Follow grid / list position.
-                y: -((historyContainer.showHistoryList
-                      ? (favoriteGrid.count > 0
-                         ? historyList.contentY + favoriteGrid.cellHeight + favoriteGrid.menuHeight
-                         : historyList.contentY)
-                      : favoriteGrid.contentY)
-                     + favoriteGrid.headerItem.height + favoriteGrid.menuHeight)
+                y: overlay.topChromeInset
+                   - ((historyContainer.showHistoryList
+                       ? (favoriteGrid.count > 0
+                          ? historyList.contentY + favoriteGrid.cellHeight + favoriteGrid.menuHeight
+                          : historyList.contentY)
+                       : favoriteGrid.contentY)
+                      + favoriteGrid.headerItem.height + favoriteGrid.menuHeight)
 
                 // On top of HistoryList and FavoriteGrid
                 z: 1
@@ -519,6 +529,8 @@ Shared.Background {
                 url: webView.contentItem && webView.contentItem.url || ""
                 findText: searchField.text
                 bookmarked: bookmarkModel.activeUrlBookmarked
+                leftContentMargin: overlay.leftChromeMargin
+                rightContentMargin: overlay.rightChromeMargin
 
                 opacity: textSelectionToolbar.active ? 0.0 : crossfadeRatio
                 Behavior on opacity {
@@ -619,7 +631,7 @@ Shared.Background {
 
                     header: Item {
                         width: parent.width
-                        height: searchField.height + historyButton.height
+                        height: overlay.topChromeInset + searchField.height + historyButton.height
                     }
 
                     model: BookmarkFilterModel {
