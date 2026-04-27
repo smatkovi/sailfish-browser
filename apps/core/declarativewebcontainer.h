@@ -45,6 +45,7 @@ class DeclarativeWebContainer : public QWindow, public QQmlParserStatus, protect
     Q_PROPERTY(bool enabled MEMBER m_enabled NOTIFY enabledChanged FINAL)
     Q_PROPERTY(bool foreground READ foreground WRITE setForeground NOTIFY foregroundChanged FINAL)
     Q_PROPERTY(int maxLiveTabCount READ maxLiveTabCount WRITE setMaxLiveTabCount NOTIFY maxLiveTabCountChanged FINAL)
+    Q_PROPERTY(bool displayCutoutAllowed READ displayCutoutAllowed WRITE setDisplayCutoutAllowed NOTIFY displayCutoutAllowedChanged FINAL)
     // This property should cover all possible popups
     Q_PROPERTY(bool touchBlocked MEMBER m_touchBlocked NOTIFY touchBlockedChanged FINAL)
 
@@ -93,6 +94,9 @@ public:
 
     int maxLiveTabCount() const;
     void setMaxLiveTabCount(int count);
+
+    bool displayCutoutAllowed() const;
+    void setDisplayCutoutAllowed(bool allowed);
 
     QQmlComponent* webPageComponent() const;
     void setWebPageComponent(QQmlComponent* qmlComponent);
@@ -163,6 +167,7 @@ signals:
     void enabledChanged();
     void foregroundChanged();
     void maxLiveTabCountChanged();
+    void displayCutoutAllowedChanged();
     void touchBlockedChanged();
 
     void loadingChanged();
@@ -274,6 +279,7 @@ private:
 
     bool m_enabled = true;
     bool m_foreground = true;
+    bool m_displayCutoutAllowed = false;
     bool m_touchBlocked = false;
 
     // See DeclarativeWebContainer::load (line 283) as load need to "work" even if engine, model,

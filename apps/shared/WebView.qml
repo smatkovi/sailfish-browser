@@ -77,8 +77,9 @@ WebContainer {
     }
 
     function _rotatedInsets(safeAreaInsets, pageOrientation) {
-        switch (QuickWindow.Screen.angleBetween(_qtScreenOrientation(pageOrientation),
-                                                QuickWindow.Screen.primaryOrientation)) {
+        // Convert primary-screen insets into the page's local orientation.
+        switch (QuickWindow.Screen.angleBetween(QuickWindow.Screen.primaryOrientation,
+                                                _qtScreenOrientation(pageOrientation))) {
         case 270:
         case -90:
             return {
@@ -111,10 +112,23 @@ WebContainer {
     readonly property int _pageOrientation: rotationHandler
                                             ? rotationHandler.orientation
                                             : Orientation.Portrait
-    readonly property var _safeAreaInsets: _primarySafeAreaInsets()
+    // CSS safe-area env() values include rounded display edges and cutouts.
+    readonly property var _safeAreaInsets: _rotatedInsets(_primarySafeAreaInsets(), _pageOrientation)
     readonly property var hostSafeAreaInsets: _rotatedInsets(_primarySafeAreaInsets(), _pageOrientation)
     readonly property var hostCutoutInsets: _rotatedInsets(_primaryCutoutInsets(), _pageOrientation)
     readonly property bool coverViewportFit: contentItem && contentItem.viewportFit === "cover"
+    property int _pendingSafeAreaInsetReapplies
+    property var _safeAreaInsetReapplyTimer: Timer {
+        interval: 100
+        repeat: true
+        onTriggered: {
+            webView._reapplySafeAreaInsets()
+            webView._pendingSafeAreaInsetReapplies = webView._pendingSafeAreaInsetReapplies - 1
+            if (webView._pendingSafeAreaInsetReapplies <= 0) {
+                running = false
+            }
+        }
+    }
 
     property var resourceController: ResourceController {
         webPage: contentItem
@@ -172,6 +186,18 @@ WebContainer {
         contentItem.sendAsyncMessage(name, data)
     }
 
+    function _reapplySafeAreaInsets() {
+        if (contentItem) {
+            contentItem.reapplySafeAreaInsets()
+        }
+    }
+
+    function reapplySafeAreaInsetsSoon() {
+        // QScreen geometry can settle after the content orientation change arrives.
+        _pendingSafeAreaInsetReapplies = 3
+        _safeAreaInsetReapplyTimer.restart()
+    }
+
     function thumbnailCaptureSize() {
         if (webView.activePortalMode) {
             console.log("Thumbnail size tried accessed in captive portal mode")
@@ -218,6 +244,18 @@ WebContainer {
                   || !AccessPolicy.browserEnabled || false
 
     onKeyPressed: handleKeyPress(key)
+
+    onContentItemChanged: reapplySafeAreaInsetsSoon()
+
+    onCoverViewportFitChanged: reapplySafeAreaInsetsSoon()
+
+    onXChanged: reapplySafeAreaInsetsSoon()
+
+    onYChanged: reapplySafeAreaInsetsSoon()
+
+    onWidthChanged: reapplySafeAreaInsetsSoon()
+
+    onHeightChanged: reapplySafeAreaInsetsSoon()
 
     onBackButtonPressed: webView.goBack()
 

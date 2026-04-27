@@ -25,6 +25,7 @@
 
 #include <webengine.h>
 #include <QTimerEvent>
+#include <QPoint>
 #include <QScreen>
 #include <QMetaMethod>
 #include <QOpenGLFunctions_ES2>
@@ -298,6 +299,20 @@ void DeclarativeWebContainer::setMaxLiveTabCount(int count)
 {
     if (m_webPages->setMaxLivePages(count)) {
         emit maxLiveTabCountChanged();
+    }
+}
+
+bool DeclarativeWebContainer::displayCutoutAllowed() const
+{
+    return m_displayCutoutAllowed;
+}
+
+void DeclarativeWebContainer::setDisplayCutoutAllowed(bool allowed)
+{
+    if (m_displayCutoutAllowed != allowed) {
+        m_displayCutoutAllowed = allowed;
+        updateMozWindowScreenPosition();
+        emit displayCutoutAllowedChanged();
     }
 }
 
@@ -903,19 +918,6 @@ void DeclarativeWebContainer::componentComplete()
 {
     showFullScreen();
 
-    if (m_rotationHandler) {
-        connect(m_rotationHandler.data(), &QQuickItem::xChanged,
-                this, &DeclarativeWebContainer::updateMozWindowScreenPosition, Qt::UniqueConnection);
-        connect(m_rotationHandler.data(), &QQuickItem::yChanged,
-                this, &DeclarativeWebContainer::updateMozWindowScreenPosition, Qt::UniqueConnection);
-        connect(m_rotationHandler.data(), &QQuickItem::widthChanged,
-                this, &DeclarativeWebContainer::updateMozWindowScreenPosition, Qt::UniqueConnection);
-        connect(m_rotationHandler.data(), &QQuickItem::heightChanged,
-                this, &DeclarativeWebContainer::updateMozWindowScreenPosition, Qt::UniqueConnection);
-        connect(m_rotationHandler.data(), &QQuickItem::rotationChanged,
-                this, &DeclarativeWebContainer::updateMozWindowScreenPosition, Qt::UniqueConnection);
-    }
-
     if (m_initialized && !m_completed) {
         m_completed = true;
         emit completedChanged();
@@ -1065,12 +1067,8 @@ void DeclarativeWebContainer::initialize()
 void DeclarativeWebContainer::updateMozWindowScreenPosition()
 {
     if (m_mozWindow) {
-        QPointF scenePosition(position());
-        if (m_rotationHandler) {
-            scenePosition = m_rotationHandler->mapToScene(QPointF(position()));
-        }
         m_mozWindow->setSize(size());
-        m_mozWindow->setScreenPosition(scenePosition.toPoint());
+        m_mozWindow->setScreenPosition(m_displayCutoutAllowed ? QPoint() : position());
     }
 }
 

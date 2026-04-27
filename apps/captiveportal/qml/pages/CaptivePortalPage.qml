@@ -94,16 +94,18 @@ Page {
         id: webView
 
         readonly property bool allowDisplayCutout: contentFullscreen || coverViewportFit
+        displayCutoutAllowed: allowDisplayCutout
         activePortalMode: true
         enabled: overlay.animator.allowContentUse
-        x: allowDisplayCutout ? 0 : hostCutoutInsets.left
-        y: allowDisplayCutout ? 0 : hostCutoutInsets.top
-        width: browserPage.width - (allowDisplayCutout
-                                    ? 0
-                                    : (hostCutoutInsets.left + hostCutoutInsets.right))
-        height: browserPage.height - (allowDisplayCutout
-                                      ? 0
-                                      : (hostCutoutInsets.top + hostCutoutInsets.bottom))
+        // Reapply cutout-safe geometry after WebContainer has called showFullScreen().
+        x: completed && !allowDisplayCutout ? hostCutoutInsets.left : 0
+        y: completed && !allowDisplayCutout ? hostCutoutInsets.top : 0
+        width: browserPage.width - (completed && !allowDisplayCutout
+                                    ? (hostCutoutInsets.left + hostCutoutInsets.right)
+                                    : 0)
+        height: browserPage.height - (completed && !allowDisplayCutout
+                                      ? (hostCutoutInsets.top + hostCutoutInsets.bottom)
+                                      : 0)
         fullscreenHeight: portrait ? Screen.height : Screen.width
         portrait: browserPage.isPortrait
         maxLiveTabCount: 3
@@ -126,9 +128,7 @@ Page {
 
         onWebContentOrientationChanged: {
             orientationFader.waitForWebContentOrientationChanged = false
-            if (contentItem) {
-                contentItem.reapplySafeAreaInsets()
-            }
+            reapplySafeAreaInsetsSoon()
         }
 
         function applyContentOrientation(orientation) {
