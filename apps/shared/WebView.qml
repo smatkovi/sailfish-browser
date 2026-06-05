@@ -18,6 +18,7 @@ import Sailfish.WebView.Pickers 1.0 as Pickers
 import Sailfish.WebView.Popups 1.0 as Popups
 import Sailfish.WebView.Controls 1.0
 import Sailfish.WebView 1.0 as SailfishWebView
+import Sailfish.WebEngine 1.0
 import Sailfish.Policy 1.0
 import Sailfish.TextLinking 1.0
 import "." as Browser
