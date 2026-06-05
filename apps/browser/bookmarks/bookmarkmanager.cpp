@@ -12,6 +12,7 @@
 
 #include <QDebug>
 #include <QFile>
+#include <QPointer>
 #include <QTextStream>
 #include <QJsonObject>
 #include <QJsonArray>
