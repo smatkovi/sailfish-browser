@@ -31,6 +31,8 @@ Dialog {
     acceptDestinationAction: PageStackAction.Push
 
     onAcceptPendingChanged: {
+        if (!acceptPending) return
+
         acceptDestinationInstance.historyEnabled = clearHistory.checked
         acceptDestinationInstance.cookieAndSiteDataEnabled = clearCookiesAndSiteData.checked
         acceptDestinationInstance.passwordsEnabled = clearSavedPasswords.checked
