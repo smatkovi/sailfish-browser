@@ -43,6 +43,7 @@ Dialog {
 
     ConfigurationGroup {
         id: config
+
         path: "/apps/sailfish-browser/actions"
 
         property bool clear_history: true
@@ -60,6 +61,7 @@ Dialog {
 
         Column {
             id: contentColumn
+
             width: parent.width
 
             DialogHeader {
@@ -92,6 +94,7 @@ Dialog {
 
                 ComboBox {
                      id: historyErasingComboBox
+
                      enabled: clearHistory.checked
                      currentIndex: config.clear_history_period
 
