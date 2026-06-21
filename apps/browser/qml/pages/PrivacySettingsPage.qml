@@ -28,7 +28,6 @@ Dialog {
                || clearBookmarks.checked
                || clearSitePermissions.checked
     acceptDestination: Qt.resolvedUrl("components/PrivacySettingsConfirmDialog.qml")
-    acceptDestinationAction: PageStackAction.Push
 
     onAcceptPendingChanged: {
         if (!acceptPending) return
