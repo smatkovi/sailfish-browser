@@ -16,7 +16,7 @@ Rectangle {
     readonly property real overlayOpacity: 0.15
 
     height: Theme.itemSizeMedium - Theme.paddingMedium
-    implicitWidth: content.width
+    implicitWidth: 4 * Theme.itemSizeLarge // for each button
     implicitHeight: Theme.iconSizeMedium
     color: Qt.tint(Theme.colorScheme === Theme.LightOnDark ? "black" : "white",
                    Theme.rgba(Theme.primaryColor, root.overlayOpacity))
@@ -24,11 +24,13 @@ Rectangle {
     Row {
         id: content
 
+        property int buttonWidth: root.width / 4
+
         height: root.height
 
         Shared.IconButton {
             height: parent.height
-            width: Theme.itemSizeLarge
+            width: content.buttonWidth
             icon.source: "image://theme/icon-m-tab-close"
             icon.opacity: enabled ? 1.0 : Theme.opacityLow
             enabled: webView.tabModel.count > 0
@@ -42,7 +44,7 @@ Rectangle {
 
         Shared.IconButton {
             height: parent.height
-            width: Theme.itemSizeLarge
+            width: content.buttonWidth
             icon.source: "image://theme/icon-m-forward"
             icon.opacity: enabled ? 1.0 : Theme.opacityLow
             enabled: webView.canGoForward
@@ -54,7 +56,7 @@ Rectangle {
 
         Shared.IconButton {
             height: parent.height
-            width: Theme.itemSizeLarge
+            width: content.buttonWidth
             icon.source: overlay.toolBar.bookmarked ? "image://theme/icon-m-favorite-selected"
                                                     : "image://theme/icon-m-favorite"
             icon.opacity: enabled ? 1.0 : Theme.opacityLow
@@ -70,7 +72,7 @@ Rectangle {
 
         Shared.IconButton {
             height: parent.height
-            width: Theme.itemSizeLarge
+            width: content.buttonWidth
             icon.source: webView.loading ? "image://theme/icon-m-reset" : "image://theme/icon-m-refresh"
             icon.opacity: enabled ? 1.0 : Theme.opacityLow
             enabled: webView.contentItem
