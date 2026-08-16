@@ -131,7 +131,7 @@ fi
 %{_libdir}/libsailfishbrowser-next.so.*
 %exclude %{_libdir}/libsailfishbrowser-next.so
 %{_sharedstatedir}/environment/nemo/*
-%{_libexecdir}/jolla-vault/units/vault-browser
+%{_libexecdir}/jolla-vault/units/vault-browser-next
 %{_datadir}/jolla-vault/units/BrowserNext.json
 %{_libdir}/qt5/qml/org/sailfishos/browser/settings
 %{_datadir}/jolla-settings/entries/browser-next.json

@@ -10,3 +10,6 @@ Makefile
 *.ts
 RPMS/*
 sailfish-browser-next.pro.user
+installroot/
+RPMS/
+backup-unit/vault-browser*

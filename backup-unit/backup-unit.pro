@@ -1,4 +1,4 @@
-TARGET = vault-browser
+TARGET = vault-browser-next
 INCLUDEPATH += $$PWD/../apps/core
 HEADERS += $$PWD/../apps/core/logging.h
 SOURCES += browserunit.cpp \
