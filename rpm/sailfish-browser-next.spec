@@ -127,13 +127,13 @@ fi
 %{_oneshotdir}/*
 %{_userunitdir}/user-session.target.d/50-sailfish-browser-next.conf
 # Let main package own import root level
-%dir %{_libdir}/qt5/qml/org/sailfishos/browser
+%dir %{_libdir}/qt5/qml/org/sailfishos/browsernext
 %{_libdir}/libsailfishbrowser-next.so.*
 %exclude %{_libdir}/libsailfishbrowser-next.so
 %{_sharedstatedir}/environment/nemo/*
 %{_libexecdir}/jolla-vault/units/vault-browser-next
 %{_datadir}/jolla-vault/units/BrowserNext.json
-%{_libdir}/qt5/qml/org/sailfishos/browser/settings
+%{_libdir}/qt5/qml/org/sailfishos/browsernext/settings
 %{_datadir}/jolla-settings/entries/browser-next.json
 %{_datadir}/jolla-settings/pages/browser-next
 

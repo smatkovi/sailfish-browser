@@ -2,7 +2,7 @@ TEMPLATE = lib
 TARGET = browsersettingsplugin
 TARGET = $$qtLibraryTarget($$TARGET)
 
-MODULENAME = org/sailfishos/browser/settings
+MODULENAME = org/sailfishos/browsernext/settings
 TARGETPATH = $$[QT_INSTALL_QML]/$$MODULENAME
 
 QT += qml
