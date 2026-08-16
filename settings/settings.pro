@@ -14,7 +14,7 @@ target.path = $$TARGETPATH
 
 SOURCES +=  plugin.cpp
 
-qmlpages.path = /usr/share/jolla-settings/pages/browser
+qmlpages.path = /usr/share/jolla-settings/pages/browser-next
 qmlpages.files = browser.qml
 
 plugin_entry.path = /usr/share/jolla-settings/entries

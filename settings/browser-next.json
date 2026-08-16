@@ -9,7 +9,7 @@
         "icon": "image://theme/icon-m-browser",
         "order": 100,
         "params": {
-            "source": "/usr/share/jolla-settings/pages/browser/browser.qml"
+            "source": "/usr/share/jolla-settings/pages/browser-next/browser.qml"
         }
     }
     ]

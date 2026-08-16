@@ -134,8 +134,8 @@ fi
 %{_libexecdir}/jolla-vault/units/vault-browser
 %{_datadir}/jolla-vault/units/Browser.json
 %{_libdir}/qt5/qml/org/sailfishos/browser/settings
-%{_datadir}/jolla-settings/entries/browser.json
-%{_datadir}/jolla-settings/pages/browser
+%{_datadir}/jolla-settings/entries/browser-next.json
+%{_datadir}/jolla-settings/pages/browser-next
 
 %files ts-devel
 %{_datadir}/translations/source/*.ts
