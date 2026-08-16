@@ -3,7 +3,7 @@ INCLUDEPATH += $$PWD
 QT += concurrent
 
 CONFIG += link_pkgconfig
-PKGCONFIG += qt5embedwidget
+PKGCONFIG += qt5embedwidget-next
 
 # C++ sources
 SOURCES += \

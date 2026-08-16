@@ -1,7 +1,7 @@
 INCLUDEPATH += $$PWD
 
 CONFIG += link_pkgconfig
-PKGCONFIG += sailfishwebengine sailfishpolicy nemotransferengine-qt5 dsme_dbus_if mlite5
+PKGCONFIG += sailfishwebengine-next sailfishpolicy nemotransferengine-qt5 dsme_dbus_if mlite5
 
 QT += quick
 

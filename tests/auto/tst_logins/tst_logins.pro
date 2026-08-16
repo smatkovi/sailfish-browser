@@ -2,7 +2,7 @@ TARGET = tst_logins
 
 CONFIG += link_pkgconfig
 
-PKGCONFIG += sailfishwebengine
+PKGCONFIG += sailfishwebengine-next
 
 QT += quick concurrent sql gui-private
 
