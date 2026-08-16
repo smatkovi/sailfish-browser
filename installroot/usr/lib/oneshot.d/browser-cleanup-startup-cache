@@ -1,0 +1,3 @@
+#!/bin/sh
+rm -rf ~/.local/share/org.sailfishos/browser/.mozilla/startupCache
+rm -rf ~/.local/share/org.sailfishos/captiveportal/.mozilla/startupCache

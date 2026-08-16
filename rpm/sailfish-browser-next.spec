@@ -98,7 +98,7 @@ Unit tests and additional data needed for functional tests
 chmod +x %{buildroot}/%{_oneshotdir}/*
 
 mkdir -p %{buildroot}/%{_sharedstatedir}/environment/nemo/
-cp -f data/70-browser.conf %{buildroot}/%{_sharedstatedir}/environment/nemo/
+cp -f data/70-browser-next.conf %{buildroot}/%{_sharedstatedir}/environment/nemo/
 
 %post
 /sbin/ldconfig || :
@@ -132,7 +132,7 @@ fi
 %exclude %{_libdir}/libsailfishbrowser-next.so
 %{_sharedstatedir}/environment/nemo/*
 %{_libexecdir}/jolla-vault/units/vault-browser
-%{_datadir}/jolla-vault/units/Browser.json
+%{_datadir}/jolla-vault/units/BrowserNext.json
 %{_libdir}/qt5/qml/org/sailfishos/browser/settings
 %{_datadir}/jolla-settings/entries/browser-next.json
 %{_datadir}/jolla-settings/pages/browser-next

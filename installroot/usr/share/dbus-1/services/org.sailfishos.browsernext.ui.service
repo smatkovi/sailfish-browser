@@ -1,0 +1,3 @@
+[D-BUS Service]
+Name=org.sailfishos.browsernext.ui
+Exec=/usr/bin/sailfish-browser-next -prestart
