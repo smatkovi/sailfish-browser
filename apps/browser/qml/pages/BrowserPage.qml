@@ -142,7 +142,7 @@ Page {
     ConfigurationValue {
         id: maxliveTabs
 
-        key: "/apps/sailfish-browser/settings/max_live_tab_count"
+        key: "/apps/sailfish-browser-next/settings/max_live_tab_count"
         defaultValue: 3
     }
 

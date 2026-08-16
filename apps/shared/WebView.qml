@@ -14,11 +14,11 @@ import QtQuick.Window 2.2 as QuickWindow
 import Nemo.Configuration 1.0
 import Sailfish.Silica 1.0
 import Sailfish.Browser 1.0
-import Sailfish.WebView.Pickers 1.0 as Pickers
-import Sailfish.WebView.Popups 1.0 as Popups
-import Sailfish.WebView.Controls 1.0
-import Sailfish.WebView 1.0 as SailfishWebView
-import Sailfish.WebEngine 1.0
+import SailfishNext.WebView.Pickers 1.0 as Pickers
+import SailfishNext.WebView.Popups 1.0 as Popups
+import SailfishNext.WebView.Controls 1.0
+import SailfishNext.WebView 1.0 as SailfishWebView
+import SailfishNext.WebEngine 1.0
 import Sailfish.Policy 1.0
 import Sailfish.TextLinking 1.0
 import "." as Browser
@@ -189,12 +189,12 @@ WebContainer {
     property var linkHandler: LinkHandler {}
 
     property ConfigurationValue fixedToolbarConfig: ConfigurationValue {
-        key: "/apps/sailfish-browser/settings/fixed_toolbar"
+        key: "/apps/sailfish-browser-next/settings/fixed_toolbar"
         defaultValue: false
     }
 
     property ConfigurationValue cutoutGuardConfig: ConfigurationValue {
-        key: "/apps/sailfish-browser/settings/cutout_guard"
+        key: "/apps/sailfish-browser-next/settings/cutout_guard"
         defaultValue: "top_guard"
     }
 

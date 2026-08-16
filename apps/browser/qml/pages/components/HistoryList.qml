@@ -12,7 +12,7 @@
 
 import QtQuick 2.1
 import Sailfish.Silica 1.0
-import Sailfish.WebView.Popups 1.0
+import SailfishNext.WebView.Popups 1.0
 
 SilicaListView {
     id: view

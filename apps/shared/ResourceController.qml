@@ -13,7 +13,7 @@
 
 import QtQuick 2.0
 import Nemo.KeepAlive 1.2
-import Sailfish.WebEngine 1.0
+import SailfishNext.WebEngine 1.0
 import Nemo.DBus 2.0
 import Nemo.Policy 1.0
 import Nemo.Connectivity 1.0

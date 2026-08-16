@@ -15,7 +15,7 @@
 #include <QCoreApplication>
 #include <QDBusMessage>
 
-static const auto CaptivePortalServiceName = QStringLiteral("org.sailfishos.captiveportal");
+static const auto CaptivePortalServiceName = QStringLiteral("org.sailfishos.captiveportalnext");
 
 CaptivePortalService::CaptivePortalService(QObject *parent)
     : QObject(parent)

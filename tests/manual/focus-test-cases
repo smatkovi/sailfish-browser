@@ -23,8 +23,8 @@ A web page kicks in a sub page like m.aamulehti.fi:
 ==> Cover showing the web page
 ==> Tapping the cover area brings up the browser and sub page visible
 
-The package sailfish-browser-tests contains following manual test case:
-- xdg-open /opt/tests/sailfish-browser/manual/testwebprompts.html
+The package sailfish-browser-next-tests contains following manual test case:
+- xdg-open /opt/tests/sailfish-browser-next/manual/testwebprompts.html
 1) Focus the text input containing a text: "Focus and press enter to trigger prompt"
 2) Press enter to trigger prompt :)
    ==> "A word or two" silica text field is roughly at center of the screen and focused

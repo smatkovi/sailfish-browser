@@ -9,4 +9,4 @@ Makefile
 *.so.*
 *.ts
 RPMS/*
-sailfish-browser.pro.user
+sailfish-browser-next.pro.user

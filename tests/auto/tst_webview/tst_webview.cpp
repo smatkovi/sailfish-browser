@@ -44,7 +44,7 @@
 
 #ifndef START_URL
 // This should be defined in the build scripts
-#define START_URL "file:///opt/tests/sailfish-browser/manual/testpage.html"
+#define START_URL "file:///opt/tests/sailfish-browser-next/manual/testpage.html"
 #endif
 
 static const QString startPage(START_URL);
@@ -905,7 +905,7 @@ int main(int argc, char *argv[])
         dir.removeRecursively();
     }
     dir.mkpath(dir.path());
-    QFile::copy("/usr/share/sailfish-browser/data/prefs.js", mozillaDir + "prefs.js");
+    QFile::copy("/usr/share/sailfish-browser-next/data/prefs.js", mozillaDir + "prefs.js");
 
     bool contextDestroyed = false;
 

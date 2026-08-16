@@ -28,9 +28,9 @@
 #include <webenginesettings.h>
 
 const auto MOZILLA_DATA_UA_UPDATE = QStringLiteral("ua-update.json");
-const auto MOZILLA_DATA_UA_UPDATE_SOURCE = QStringLiteral("/usr/share/sailfish-browser/data/ua-update.json.in");
+const auto MOZILLA_DATA_UA_UPDATE_SOURCE = QStringLiteral("/usr/share/sailfish-browser-next/data/ua-update.json.in");
 const auto MOZILLA_DATA_PREFS = QStringLiteral("prefs.js");
-const auto MOZILLA_DATA_PREFS_SOURCE = QStringLiteral("/usr/share/sailfish-browser/data/prefs.js");
+const auto MOZILLA_DATA_PREFS_SOURCE = QStringLiteral("/usr/share/sailfish-browser-next/data/prefs.js");
 
 BrowserPrivate::BrowserPrivate(QQuickView *view)
     : view(view)

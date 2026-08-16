@@ -8,7 +8,7 @@ path=$1
 file=$(basename $path)
 result=results/`echo $file | cut -d\. -f1`
 
-ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no nemo@$2 "sailfish-browser -dumpMemory $path" &
+ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no nemo@$2 "sailfish-browser-next -dumpMemory $path" &
 
 sleep 3
 

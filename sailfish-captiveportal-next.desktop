@@ -1,0 +1,16 @@
+[Desktop Entry]
+Type=Application
+NoDisplay=true
+Name=Captive Portal
+X-MeeGo-Logical-Id=sailfish-browser-next-ap-name
+X-MeeGo-Translation-Catalog=sailfish-captiveportal-next
+Icon=icon-launcher-browser
+Exec=/usr/bin/sailjail -p sailfish-captiveportal-next.desktop /usr/bin/sailfish-captiveportal-next -captiveportal %U
+Comment=Sailfish captive portal
+X-Maemo-Service=org.sailfishos.captiveportalnext
+X-Maemo-Method=org.sailfishos.captiveportalnext.openUrl
+
+[X-Sailjail]
+Permissions=CaptivePortal;Audio;Camera;Location;Internet;Downloads
+OrganizationName=org.sailfishos
+ApplicationName=captiveportal-next

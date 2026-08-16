@@ -188,7 +188,7 @@ DeclarativeWebContainer::DeclarativeWebContainer(QWindow *parent)
     setObjectName("WebView");
 
 
-    MDConfItem privatebrowsingAutostart(QStringLiteral("/apps/sailfish-browser/settings/browser_privatebrowsing_autostart"));
+    MDConfItem privatebrowsingAutostart(QStringLiteral("/apps/sailfish-browser-next/settings/browser_privatebrowsing_autostart"));
 
     if (!browserEnabled() || privatebrowsingAutostart.value(QVariant(false)).toBool()) m_privateMode = true;
 

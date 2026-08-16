@@ -10,13 +10,13 @@ testdata.files = *.txt \
                  mix-blend-mode/*.svg \
                  leak-test/* \
                  icon-launcher-testbrowser.png
-testdata.path = /opt/tests/sailfish-browser/manual/
+testdata.path = /opt/tests/sailfish-browser-next/manual/
 
 testnavigationdata.files = navigation/*.html
-testnavigationdata.path = /opt/tests/sailfish-browser/manual/navigation/
+testnavigationdata.path = /opt/tests/sailfish-browser-next/manual/navigation/
 
 # .desktop file used for functional testing
-testdesktop.files = test-sailfish-browser.desktop
+testdesktop.files = test-sailfish-browser-next.desktop
 testdesktop.path = /usr/share/applications
 
 INSTALLS += testdata testnavigationdata testdesktop

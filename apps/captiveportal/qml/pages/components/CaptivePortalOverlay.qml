@@ -13,7 +13,7 @@ import Sailfish.Silica 1.0
 import Sailfish.Silica.private 1.0 as Private
 import Sailfish.Browser 1.0
 import Sailfish.Policy 1.0
-import Sailfish.WebView.Controls 1.0
+import SailfishNext.WebView.Controls 1.0
 import com.jolla.settings.system 1.0
 import "." as Browser
 import "../../shared" as Shared

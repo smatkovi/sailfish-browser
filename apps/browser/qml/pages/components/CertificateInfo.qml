@@ -10,9 +10,9 @@ import QtQuick 2.6
 import Sailfish.Silica 1.0
 import Sailfish.Silica.private 1.0 as Private
 import Sailfish.Browser 1.0
-import Qt5Mozilla 1.0
+import Qt5MozillaNext 1.0
 import "." as Browser
-import Sailfish.WebView.Controls 1.0
+import SailfishNext.WebView.Controls 1.0
 
 SilicaFlickable {
     id: root

@@ -3,28 +3,28 @@
 %global min_embedlite_components_version 2.0.0
 %global min_sailfishwebengine_version 1.7.0
 
-%global captiveportal sailfish-captiveportal
+%global captiveportal sailfish-captiveportal-next
 
-Name:       sailfish-browser
+Name:       sailfish-browser-next
 
 Summary:    Sailfish Browser
 Version:    3.0.0
 Release:    1
 License:    MPLv2.0
-Url:        https://github.com/sailfishos/sailfish-browser
+Url:        https://github.com/sailfishos/sailfish-browser-next
 Source0:    %{name}-%{version}.tar.bz2
 BuildRequires:  pkgconfig(Qt5Core)
 BuildRequires:  pkgconfig(Qt5Qml)
 BuildRequires:  pkgconfig(Qt5Gui)
 BuildRequires:  pkgconfig(Qt5Quick)
-BuildRequires:  pkgconfig(qt5embedwidget) >= %{min_qtmozembed_version}
+BuildRequires:  pkgconfig(qt5embedwidget-next) >= %{min_qtmozembed_version}
 BuildRequires:  pkgconfig(Qt5DBus)
 BuildRequires:  pkgconfig(Qt5Concurrent)
 BuildRequires:  pkgconfig(Qt5Sql)
 BuildRequires:  pkgconfig(nemotransferengine-qt5)
 BuildRequires:  pkgconfig(mlite5)
 BuildRequires:  pkgconfig(qdeclarative5-boostable)
-BuildRequires:  pkgconfig(sailfishwebengine) >= %{min_sailfishwebengine_version}
+BuildRequires:  pkgconfig(sailfishwebengine-next) >= %{min_sailfishwebengine_version}
 BuildRequires:  pkgconfig(sailfishpolicy)
 BuildRequires:  qt5-qttools
 BuildRequires:  qt5-qttools-linguist
@@ -36,12 +36,12 @@ BuildRequires:  pkgconfig(dsme_dbus_if)
 
 Requires: sailfishsilica-qt5 >= 1.2.33
 Requires: sailfish-content-graphics
-Requires: xulrunner-qt5 >= %{min_xulrunner_version}
-Requires: embedlite-components-qt5 >= %{min_embedlite_components_version}
-Requires: qtmozembed-qt5 >= %{min_qtmozembed_version}
-Requires: sailfish-components-webview-qt5 >= %{min_sailfishwebengine_version}
-Requires: sailfish-components-webview-qt5-popups >= %{min_sailfishwebengine_version}
-Requires: sailfish-components-webview-qt5-pickers >= %{min_sailfishwebengine_version}
+Requires: xulrunner-qt5-next >= %{min_xulrunner_version}
+Requires: embedlite-components-qt5-next >= %{min_embedlite_components_version}
+Requires: qtmozembed-qt5-next >= %{min_qtmozembed_version}
+Requires: sailfish-components-webview-qt5-next >= %{min_sailfishwebengine_version}
+Requires: sailfish-components-webview-qt5-next-popups >= %{min_sailfishwebengine_version}
+Requires: sailfish-components-webview-qt5-next-pickers >= %{min_sailfishwebengine_version}
 Requires: qt5-plugin-imageformat-ico
 Requires: qt5-plugin-imageformat-gif
 Requires: qt5-plugin-position-geoclue
@@ -58,8 +58,8 @@ Requires: nemo-qml-plugin-connectivity
 Requires: jolla-settings >= 0.11.29
 Requires: jolla-settings-system >= 1.0.70
 Requires: sailfish-policy
-Obsoletes: sailfish-browser-settings <= 2.3.29
-Provides: sailfish-browser-settings > 2.3.29
+Obsoletes: sailfish-browser-next-settings <= 2.3.29
+Provides: sailfish-browser-next-settings > 2.3.29
 
 %{_oneshot_requires_post}
 
@@ -125,11 +125,11 @@ fi
 %{_datadir}/translations/settings-%{name}_eng_en.qm
 %{_datadir}/dbus-1/services/*.service
 %{_oneshotdir}/*
-%{_userunitdir}/user-session.target.d/50-sailfish-browser.conf
+%{_userunitdir}/user-session.target.d/50-sailfish-browser-next.conf
 # Let main package own import root level
 %dir %{_libdir}/qt5/qml/org/sailfishos/browser
-%{_libdir}/libsailfishbrowser.so.*
-%exclude %{_libdir}/libsailfishbrowser.so
+%{_libdir}/libsailfishbrowser-next.so.*
+%exclude %{_libdir}/libsailfishbrowser-next.so
 %{_sharedstatedir}/environment/nemo/*
 %{_libexecdir}/jolla-vault/units/vault-browser
 %{_datadir}/jolla-vault/units/Browser.json

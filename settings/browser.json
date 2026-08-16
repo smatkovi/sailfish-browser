@@ -1,8 +1,8 @@
 {
-    "translation_catalog": "settings-sailfish-browser",
+    "translation_catalog": "settings-sailfish-browser-next",
     "entries": [
     {
-        "path": "applications/sailfish-browser.desktop",
+        "path": "applications/sailfish-browser-next.desktop",
         "title": "Browser",
         "translation_id": "settings_applications-browser",
         "type": "application",

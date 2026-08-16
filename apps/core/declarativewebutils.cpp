@@ -51,7 +51,7 @@ static bool fileExists(QString fileName)
 
 DeclarativeWebUtils::DeclarativeWebUtils()
     : QObject()
-    , m_homePage(new MDConfItem("/apps/sailfish-browser/settings/home_page", this))
+    , m_homePage(new MDConfItem("/apps/sailfish-browser-next/settings/home_page", this))
 {
     updateWebEngineSettings();
     connect(SailfishOS::WebEngine::instance(), &SailfishOS::WebEngine::recvObserve,
@@ -111,13 +111,13 @@ void DeclarativeWebUtils::updateWebEngineSettings()
     SailfishOS::WebEngine *webEngine = SailfishOS::WebEngine::instance();
 
     webEngineSettings->setPreference(QStringLiteral("general.useragent.updates.enabled"),
-                        MDConfItem(QStringLiteral("/apps/sailfish-browser/settings/useragent_update_enabled")).value(QVariant(true)));
+                        MDConfItem(QStringLiteral("/apps/sailfish-browser-next/settings/useragent_update_enabled")).value(QVariant(true)));
     webEngineSettings->setPreference(QStringLiteral("general.useragent.updates.url"),
-                        MDConfItem(QStringLiteral("/apps/sailfish-browser/settings/useragent_update_url")).value(defaultUserAgentUpdateUrl));
+                        MDConfItem(QStringLiteral("/apps/sailfish-browser-next/settings/useragent_update_url")).value(defaultUserAgentUpdateUrl));
     webEngineSettings->setPreference(QStringLiteral("general.useragent.updates.interval"),
-                        MDConfItem(QStringLiteral("/apps/sailfish-browser/settings/useragent_update_interval")).value(QVariant(172800))); // every 2nd day
+                        MDConfItem(QStringLiteral("/apps/sailfish-browser-next/settings/useragent_update_interval")).value(QVariant(172800))); // every 2nd day
     webEngineSettings->setPreference(QStringLiteral("general.useragent.updates.retry"),
-                        MDConfItem(QStringLiteral("/apps/sailfish-browser/settings/useragent_update_retry")).value(QVariant(86400))); // 1 day
+                        MDConfItem(QStringLiteral("/apps/sailfish-browser-next/settings/useragent_update_retry")).value(QVariant(86400))); // 1 day
 
     // Without this pref placeholders get cleaned as soon as a character gets committed
     // by VKB and that happens only when Enter is pressed or comma/space/dot is entered.

@@ -80,7 +80,7 @@ QList<Bookmark*> BookmarkManager::load()
     if (!file->open(QIODevice::ReadOnly | QIODevice::Text)) {
         qWarning() << "Unable to open bookmarks " << bookmarkFile;
 
-        file.reset(new QFile(QLatin1Literal("/usr/share/sailfish-browser/default-content/bookmarks.json")));
+        file.reset(new QFile(QLatin1Literal("/usr/share/sailfish-browser-next/default-content/bookmarks.json")));
         if (!file->open(QIODevice::ReadOnly | QIODevice::Text)) {
             qWarning() << "Unable to open bookmarks defaults";
             return bookmarks;

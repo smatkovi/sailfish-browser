@@ -128,17 +128,17 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 
     QString translationPath("/usr/share/translations/");
     QTranslator engineeringEnglish;
-    engineeringEnglish.load("sailfish-browser_eng_en", translationPath);
+    engineeringEnglish.load("sailfish-browser-next_eng_en", translationPath);
     qApp->installTranslator(&engineeringEnglish);
 
     QTranslator translator;
-    translator.load(QLocale(), "sailfish-browser", "-", translationPath);
+    translator.load(QLocale(), "sailfish-browser-next", "-", translationPath);
     qApp->installTranslator(&translator);
 
     //% "Browser"
-    view->setTitle(qtTrId("sailfish-browser-ap-name"));
+    view->setTitle(qtTrId("sailfish-browser-next-ap-name"));
 
-    app->setApplicationName(QStringLiteral("browser"));
+    app->setApplicationName(QStringLiteral("browser-next"));
     app->setOrganizationName(QStringLiteral("org.sailfishos"));
 
     const char *uri = "Sailfish.Browser";

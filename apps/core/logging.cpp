@@ -11,7 +11,7 @@
 
 #include "logging.h"
 
-Q_LOGGING_CATEGORY(lcCoreLog, "org.sailfishos.browser.core", QtWarningMsg)
-Q_LOGGING_CATEGORY(lcBackupLog, "org.sailfishos.browser.backup", QtWarningMsg)
-Q_LOGGING_CATEGORY(lcDownloadLog, "org.sailfishos.browser.download", QtWarningMsg)
-Q_LOGGING_CATEGORY(lcFavoritesLog, "org.sailfishos.browser.favorites", QtWarningMsg)
+Q_LOGGING_CATEGORY(lcCoreLog, "org.sailfishos.browsernext.core", QtWarningMsg)
+Q_LOGGING_CATEGORY(lcBackupLog, "org.sailfishos.browsernext.backup", QtWarningMsg)
+Q_LOGGING_CATEGORY(lcDownloadLog, "org.sailfishos.browsernext.download", QtWarningMsg)
+Q_LOGGING_CATEGORY(lcFavoritesLog, "org.sailfishos.browsernext.favorites", QtWarningMsg)

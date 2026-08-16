@@ -14,7 +14,7 @@ import Sailfish.Silica 1.0
 import Sailfish.Browser 1.0
 import Nemo.Configuration 1.0
 import com.jolla.settings.system 1.0
-import Sailfish.WebEngine 1.0
+import SailfishNext.WebEngine 1.0
 import Sailfish.Pickers 1.0
 import "components"
 
@@ -424,42 +424,42 @@ Page {
     ConfigurationValue {
         id: closeAllTabsConfig
 
-        key: "/apps/sailfish-browser/settings/close_all_tabs"
+        key: "/apps/sailfish-browser-next/settings/close_all_tabs"
         defaultValue: false
     }
 
     ConfigurationValue {
         id: searchEngineConfig
 
-        key: "/apps/sailfish-browser/settings/search_engine"
+        key: "/apps/sailfish-browser-next/settings/search_engine"
         defaultValue: "Ecosia"
     }
 
     ConfigurationValue {
         id: homePageConfig
 
-        key: "/apps/sailfish-browser/settings/home_page"
+        key: "/apps/sailfish-browser-next/settings/home_page"
         defaultValue: "http://jolla.com/"
     }
 
     ConfigurationValue {
         id: fixedToolbarConfig
 
-        key: "/apps/sailfish-browser/settings/fixed_toolbar"
+        key: "/apps/sailfish-browser-next/settings/fixed_toolbar"
         defaultValue: false
     }
 
     ConfigurationValue {
         id: cutoutGuardConfig
 
-        key: "/apps/sailfish-browser/settings/cutout_guard"
+        key: "/apps/sailfish-browser-next/settings/cutout_guard"
         defaultValue: "top_guard"
     }
 
     ConfigurationValue {
         id: autoStartPrivateBrowser
 
-        key: "/apps/sailfish-browser/settings/browser_privatebrowsing_autostart"
+        key: "/apps/sailfish-browser-next/settings/browser_privatebrowsing_autostart"
         defaultValue: false
     }
 

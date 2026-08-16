@@ -67,7 +67,7 @@ QString BrowserPaths::databasePath()
     }
 
     QDir dir(databaseDir);
-    const QString dbFileName(QLatin1String("sailfish-browser.sqlite"));
+    const QString dbFileName(QLatin1String("sailfish-browser-next.sqlite"));
     return dir.absoluteFilePath(dbFileName);
 }
 
