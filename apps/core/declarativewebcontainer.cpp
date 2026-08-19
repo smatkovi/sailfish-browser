@@ -511,7 +511,12 @@ void DeclarativeWebContainer::setChromeWindow(QObject *chromeWindow)
         m_chromeWindow = quickView;
         if (m_chromeWindow) {
             m_chromeWindow->setTransientParent(this);
-            m_chromeWindow->showFullScreen();
+            m_chromeWindow->setColor(QColor(Qt::transparent));
+            if (qEnvironmentVariableIsSet("SFB_NO_CHROME")) {
+                qWarning() << "EL-CHROME suppressed (SFB_NO_CHROME)";
+            } else {
+                m_chromeWindow->showFullScreen();
+            }
             updateContentOrientation(m_chromeWindow->contentOrientation());
         }
         emit chromeWindowChanged();
@@ -795,7 +800,11 @@ QImage DeclarativeWebContainer::grabContentImage(const QSize &size)
     glDisable(GL_STENCIL_TEST);
     glDisable(GL_BLEND);
     glDisable(GL_SCISSOR_TEST);
-    const QColor clearColor = opaqueSurfaceColor(m_webContentBackgroundColor);
+    QColor clearColor = opaqueSurfaceColor(m_webContentBackgroundColor);
+    if (qEnvironmentVariableIsSet("SFB_CLEAR_MAGENTA")) {
+        clearColor = QColor(255, 0, 255);
+        static int n1 = 0; if (++n1 <= 3) qWarning() << "EL-CLEAR magenta";
+    }
     glClearColor(clearColor.redF(), clearColor.greenF(), clearColor.blueF(), 1.0f);
     glClear(GL_COLOR_BUFFER_BIT);
 
@@ -1670,6 +1679,7 @@ void DeclarativeWebContainer::handleCompositingFinished()
 
 void DeclarativeWebContainer::renderCompositedFrame()
 {
+    { static int n0=0; if(++n0<=6) qWarning() << "EL-R0 enter exposed" << isExposed() << "wait" << m_waitingForActiveTabFrame << "fp" << m_waitingForActiveTabFirstPaint << "skip" << m_activeTabCompositesToSkip; }
     if (!isExposed() || !m_mozWindow) {
         return;
     }
@@ -1691,6 +1701,12 @@ void DeclarativeWebContainer::renderCompositedFrame()
             clearSurface();
             return;
         }
+
+        // Erstbild-Gate faellt, sobald echter Paint da ist und die Skips
+        // abgearbeitet sind - sonst haelt ein einzelner fehlgeschlagener
+        // Bind (leerer FrontBuffer) die Warteflagge fuer immer.
+        m_waitingForActiveTabFrame = false;
+        { static int n3 = 0; if (++n3 <= 3) qWarning() << "EL-R3 wait-gate released"; }
     }
 
     if (!m_webPage) {
@@ -1700,6 +1716,7 @@ void DeclarativeWebContainer::renderCompositedFrame()
     const bool completingActiveTabFrame = m_waitingForActiveTabFrame;
 
     if (!ensureRenderContext() || !ensureTextureProgram()) {
+        { static int n2=0; if(++n2<=3) qWarning() << "EL-R2 ctx/program FAILED"; }
         return;
     }
 
