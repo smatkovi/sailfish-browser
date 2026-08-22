@@ -17,6 +17,7 @@ import SailfishNext153.WebEngine 1.0
 import Nemo.DBus 2.0
 import Nemo.Policy 1.0
 import Nemo.Connectivity 1.0
+import Nemo.Notifications 1.0
 
 // QtObject cannot have children
 Item {
@@ -88,6 +89,8 @@ Item {
         onInitialized: {
           WebEngine.addObserver("network-enable")
           WebEngine.addObserver("webrtc-media-info")
+          WebEngine.addObserver("embed:alert")
+          WebEngine.addObserver("embed:alert-close")
           connectionHelper.notifyOfflineStatus()
         }
         onRecvObserve: {
@@ -107,6 +110,58 @@ Item {
                 calculateStatus()
             } else if (message === "network-enable") {
                 connectionHelper.attemptToConnectNetwork()
+            } else if (message === "embed:alert") {
+                webAlerts.show(data)
+            } else if (message === "embed:alert-close") {
+                webAlerts.close(data.name)
+            }
+        }
+    }
+
+    // Web Notifications from Gecko (EmbedLiteAlertsService) shown as system notifications.
+    Item {
+        id: webAlerts
+        property var _active: ({})
+
+        function show(alert) {
+            close(alert.name)
+            var n = alertComponent.createObject(webAlerts, {
+                "alertName": alert.name,
+                "summary": alert.title,
+                "body": alert.text,
+                "previewSummary": alert.title,
+                "previewBody": alert.text
+            })
+            _active[alert.name] = n
+            n.publish()
+        }
+
+        function close(name) {
+            var n = _active[name]
+            if (n) {
+                delete _active[name]
+                n.close()
+                n.destroy()
+            }
+        }
+
+        Component {
+            id: alertComponent
+            Notification {
+                property string alertName
+                appName: "Browser"
+                appIcon: "icon-launcher-browser"
+                urgency: Notification.Normal
+                onClicked: {
+                    WebEngine.notifyObservers("embed:alert-clicked", { "name": alertName })
+                    webAlerts.close(alertName)
+                }
+                onClosed: {
+                    if (webAlerts._active[alertName]) {
+                        delete webAlerts._active[alertName]
+                        WebEngine.notifyObservers("embed:alert-closed", { "name": alertName })
+                    }
+                }
             }
         }
     }
