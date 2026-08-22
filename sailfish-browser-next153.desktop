@@ -11,6 +11,6 @@ X-Maemo-Object-Path=/ui
 X-Maemo-Method=org.sailfishos.browsernext153.ui.openUrl
 
 [X-Sailjail]
-Permissions=WebView;Audio;Camera;Location;Internet;UserDirs;RemovableMedia;MediaIndexing
+Permissions=WebView;Notifications;Audio;Camera;Location;Internet;UserDirs;RemovableMedia;MediaIndexing
 OrganizationName=org.sailfishos
 ApplicationName=browser-next153
