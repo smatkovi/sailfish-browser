@@ -14,5 +14,5 @@ CONFIG(gcov) {
 }
 
 # install the test
-target.path = /opt/tests/sailfish-browser-next/auto
+target.path = /opt/tests/sailfish-browser-next153/auto
 INSTALLS += target

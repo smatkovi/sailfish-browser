@@ -17,7 +17,7 @@ static DeclarativeWebUtils *gSingleton = 0;
 
 DeclarativeWebUtils::DeclarativeWebUtils(QObject *parent)
     : QObject(parent)
-    , m_homePage("file:///opt/tests/sailfish-browser-next/manual/testpage.html")
+    , m_homePage("file:///opt/tests/sailfish-browser-next153/manual/testpage.html")
     , m_firstUseDone(true)
 {
     connect(SailfishOS::WebEngineSettings::instance(), &SailfishOS::WebEngineSettings::initialized,

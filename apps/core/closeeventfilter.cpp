@@ -48,7 +48,7 @@ void CloseEventFilter::closeApplication()
         return;
     }
 
-    MDConfItem closeAllTabsConf("/apps/sailfish-browser-next/settings/close_all_tabs");
+    MDConfItem closeAllTabsConf("/apps/sailfish-browser-next153/settings/close_all_tabs");
     if (closeAllTabsConf.value(false).toBool()) {
         DBManager::instance()->removeAllTabs();
     }

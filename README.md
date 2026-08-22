@@ -1,7 +1,7 @@
-sailfish-browser-next
+sailfish-browser-next153
 ================
 Sailfish Browser is web browser for Sailfish OS and is shipping with Sailfish OS devices. Sailfish Browser uses Sailfish Silica Qt components for the browser chrome and gecko engine with embedlite Qt5 binding.
-More information about the architecture can be found from https://web.archive.org/web/20180830103541/http://blog.idempotent.info/posts/whats-behind-sailfish-browser-next.html . Feel free to ask questions on Forum from Maintainers.
+More information about the architecture can be found from https://web.archive.org/web/20180830103541/http://blog.idempotent.info/posts/whats-behind-sailfish-browser-next153.html . Feel free to ask questions on Forum from Maintainers.
 
 Maintainers
 -----------
@@ -17,9 +17,9 @@ Engine and adaptation
 
 Tools
 -----
-All tools are located in source tree under [tools](https://github.com/sailfishos/sailfish-browser-next/tree/master/tools).
+All tools are located in source tree under [tools](https://github.com/sailfishos/sailfish-browser-next153/tree/master/tools).
 
-#### [memory-dump-reader](https://github.com/sailfishos/sailfish-browser-next/tree/master/tools/memory-dump-reader)
+#### [memory-dump-reader](https://github.com/sailfishos/sailfish-browser-next153/tree/master/tools/memory-dump-reader)
 
 Memory dump reader is a simple desktop utility for dumping and collecting memory information of the Sailfish Browser.
 Current version of the memory-dump-reader is a work-in-progress version.
@@ -42,4 +42,4 @@ The browser is open source and licensed under Mozilla Public License v2.0 (http:
 
 Wiki
 ----
-For more information see wiki: https://github.com/sailfishos/sailfish-browser-next/wiki/Sailfish-Browser-wiki
+For more information see wiki: https://github.com/sailfishos/sailfish-browser-next153/wiki/Sailfish-Browser-wiki

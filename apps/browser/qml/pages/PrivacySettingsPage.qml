@@ -45,7 +45,7 @@ Dialog {
     ConfigurationGroup {
         id: config
 
-        path: "/apps/sailfish-browser-next/privacy-cleanup"
+        path: "/apps/sailfish-browser-next153/privacy-cleanup"
 
         property bool clear_history: true
         property int clear_history_period: 0  // combo index

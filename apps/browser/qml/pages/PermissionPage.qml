@@ -10,8 +10,8 @@
 
 import QtQuick 2.0
 import Sailfish.Silica 1.0
-import SailfishNext.WebView.Controls 1.0
-import SailfishNext.WebEngine 1.0
+import SailfishNext153.WebView.Controls 1.0
+import SailfishNext153.WebEngine 1.0
 import "components"
 
 Page {

@@ -1,15 +1,15 @@
 {
-    "translation_catalog": "settings-sailfish-browser-next",
+    "translation_catalog": "settings-sailfish-browser-next153",
     "entries": [
     {
-        "path": "applications/sailfish-browser-next.desktop",
+        "path": "applications/sailfish-browser-next153.desktop",
         "title": "Browser",
         "translation_id": "settings_applications-browser",
         "type": "application",
         "icon": "image://theme/icon-m-browser",
         "order": 100,
         "params": {
-            "source": "/usr/share/jolla-settings/pages/browser-next/browser.qml"
+            "source": "/usr/share/jolla-settings/pages/browser-next153/browser.qml"
         }
     }
     ]

@@ -11,7 +11,7 @@
 
 import QtQuick 2.0
 import Sailfish.Silica 1.0
-import org.sailfishos.browsernext.settings 1.0
+import org.sailfishos.browsernext153.settings 1.0
 import Nemo.DBus 2.0
 import com.jolla.settings 1.0
 
@@ -26,9 +26,9 @@ ApplicationSettings {
     DBusInterface {
         id: browserApp
 
-        service: "org.sailfishos.browsernext.ui"
+        service: "org.sailfishos.browsernext153.ui"
         path: "/ui"
-        iface: "org.sailfishos.browsernext.ui"
+        iface: "org.sailfishos.browsernext153.ui"
 
         function load(url) {
             call("openSettings", [], function() {

@@ -17,7 +17,7 @@
 class CaptivePortalAdaptor : public QDBusAbstractAdaptor
 {
     Q_OBJECT
-    Q_CLASSINFO("D-Bus Interface", "org.sailfishos.captiveportalnext")
+    Q_CLASSINFO("D-Bus Interface", "org.sailfishos.captiveportalnext153")
 
 public:
     CaptivePortalAdaptor(CaptivePortalService *browserService);

@@ -36,7 +36,7 @@ class Q_DECL_EXPORT BrowserSettingsPlugin : public QQmlExtensionPlugin
 {
     Q_OBJECT
 
-    Q_PLUGIN_METADATA(IID "org.sailfishos.browsernext.settings")
+    Q_PLUGIN_METADATA(IID "org.sailfishos.browsernext153.settings")
 
 public:
     void initializeEngine(QQmlEngine *engine, const char *uri)
@@ -44,15 +44,15 @@ public:
         Q_UNUSED(uri)
 
         AppTranslator *engineeringEnglish = new AppTranslator(engine);
-        engineeringEnglish->load("settings-sailfish-browser-next_eng_en", "/usr/share/translations");
+        engineeringEnglish->load("settings-sailfish-browser-next153_eng_en", "/usr/share/translations");
 
         AppTranslator *translator = new AppTranslator(engine);
-        translator->load(QLocale(), "settings-sailfish-browser-next", "-", "/usr/share/translations");
+        translator->load(QLocale(), "settings-sailfish-browser-next153", "-", "/usr/share/translations");
     }
 
     void registerTypes(const char *uri)
     {
-        Q_ASSERT(QLatin1String(uri) == QLatin1String("org.sailfishos.browsernext.settings"));
+        Q_ASSERT(QLatin1String(uri) == QLatin1String("org.sailfishos.browsernext153.settings"));
         qmlRegisterUncreatableType<AppTranslator>(uri, 1, 0, "BrowserSettingsTranslations",
                                                   "Browser settings translations loaded by import");
 

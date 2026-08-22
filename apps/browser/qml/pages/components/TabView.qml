@@ -263,7 +263,7 @@ SilicaControl {
     ConfigurationValue {
         id: showCloseAllAction
 
-        key: "/apps/sailfish-browser-next/settings/show_close_all"
+        key: "/apps/sailfish-browser-next153/settings/show_close_all"
         defaultValue: true
     }
 }

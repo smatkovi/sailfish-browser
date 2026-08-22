@@ -1,0 +1,16 @@
+[Desktop Entry]
+Type=Application
+Name=Web Browser
+X-MeeGo-Logical-Id=sailfish-browser-next153-ap-name
+X-MeeGo-Translation-Catalog=sailfish-browser-next153
+Icon=icon-launcher-browser
+Exec=/usr/bin/sailfish-browser-next153 %U
+Comment=Sailfish UI application
+X-Maemo-Service=org.sailfishos.browsernext153.ui
+X-Maemo-Object-Path=/ui
+X-Maemo-Method=org.sailfishos.browsernext153.ui.openUrl
+
+[X-Sailjail]
+Permissions=WebView;Audio;Camera;Location;Internet;UserDirs;RemovableMedia;MediaIndexing
+OrganizationName=org.sailfishos
+ApplicationName=browser-next153

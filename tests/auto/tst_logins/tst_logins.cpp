@@ -624,7 +624,7 @@ int main(int argc, char *argv[])
         dir.removeRecursively();
     }
     dir.mkpath(dir.path());
-    QFile::copy("/usr/share/sailfish-browser-next/data/prefs.js", mozillaDir + "prefs.js");
+    QFile::copy("/usr/share/sailfish-browser-next153/data/prefs.js", mozillaDir + "prefs.js");
 
     return QTest::qExec(&testcase, argc, argv);
 }

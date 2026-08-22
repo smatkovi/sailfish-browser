@@ -1,4 +1,4 @@
-TARGET = vault-browser-next
+TARGET = vault-browser-next153
 INCLUDEPATH += $$PWD/../apps/core
 HEADERS += $$PWD/../apps/core/logging.h
 SOURCES += browserunit.cpp \
@@ -10,6 +10,6 @@ PKGCONFIG += vault
 
 TARGETPATH = /usr/libexec/jolla-vault/units
 target.path = $$TARGETPATH
-vault_config.files = BrowserNext.json
+vault_config.files = BrowserNext153.json
 vault_config.path = /usr/share/jolla-vault/units
 INSTALLS += target vault_config

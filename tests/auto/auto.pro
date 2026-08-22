@@ -15,6 +15,6 @@ SUBDIRS += tst_dbmanager \
 OTHER_FILES += \
     *.xml
 
-common.path = /opt/tests/sailfish-browser-next/auto
+common.path = /opt/tests/sailfish-browser-next153/auto
 common.files = tests.xml runtests.sh
 INSTALLS += common

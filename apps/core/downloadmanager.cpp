@@ -81,7 +81,7 @@ void DownloadManager::recvObserve(const QString message, const QVariant data)
     } else if (msg == QLatin1Literal("dl-start")) { // create new transfer
         emit downloadStarted();
 
-        QLatin1Literal browserInterface("org.sailfishos.browsernext");
+        QLatin1Literal browserInterface("org.sailfishos.browsernext153");
         QStringList callback;
         callback << browserInterface << QLatin1Literal("/") << browserInterface;
         QDBusPendingReply<int> reply = m_transferClient->createDownload(dataMap.value("displayName").toString(),

@@ -11,7 +11,7 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 import Sailfish.Browser 1.0
-import SailfishNext.WebView.Popups 1.0 as Popups
+import SailfishNext153.WebView.Popups 1.0 as Popups
 
 ListItem {
     id: root

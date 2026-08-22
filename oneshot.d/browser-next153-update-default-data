@@ -1,7 +1,7 @@
 #!/bin/sh
 BROWSER_PROFILE_DIR=~/.local/share/org.sailfishos/browser/.mozilla
 CAPTIVE_PORTAL_PROFILE_DIR=~/.local/share/org.sailfishos/captiveportal/.mozilla
-BROWSER_DATA_DIR=/usr/share/sailfish-browser-next/data
+BROWSER_DATA_DIR=/usr/share/sailfish-browser-next153/data
 
 for PROFILE_DIR in $BROWSER_PROFILE_DIR $CAPTIVE_PORTAL_PROFILE_DIR; do
     if [ ! -d "$PROFILE_DIR" ]; then

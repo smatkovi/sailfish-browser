@@ -12,7 +12,7 @@
 
 import QtQuick 2.2
 import Sailfish.Silica 1.0
-import SailfishNext.WebView.Popups 1.0
+import SailfishNext153.WebView.Popups 1.0
 
 ConfirmDialog {
     property Item browserPage

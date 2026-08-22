@@ -31,6 +31,7 @@
 #include <QOpenGLFramebufferObject>
 #include <QOpenGLShaderProgram>
 #include <QGuiApplication>
+#include <QTimer>
 #include <QResizeEvent>
 #include <qmozwindow.h>
 #include <qmozsecurity.h>
@@ -188,7 +189,7 @@ DeclarativeWebContainer::DeclarativeWebContainer(QWindow *parent)
     setObjectName("WebView");
 
 
-    MDConfItem privatebrowsingAutostart(QStringLiteral("/apps/sailfish-browser-next/settings/browser_privatebrowsing_autostart"));
+    MDConfItem privatebrowsingAutostart(QStringLiteral("/apps/sailfish-browser-next153/settings/browser_privatebrowsing_autostart"));
 
     if (!browserEnabled() || privatebrowsingAutostart.value(QVariant(false)).toBool()) m_privateMode = true;
 
@@ -779,12 +780,19 @@ QImage DeclarativeWebContainer::grabContentImage(const QSize &size)
         return QImage();
     }
 
-    if (!ensureRenderContext() || !ensureTextureProgram()) {
+    { static int n5=0; if(++n5<=5) qWarning() << "EL-G5 grab-ensure"; }
+    bool okCtx = ensureRenderContext();
+    { static int n6=0; if(++n6<=5) qWarning() << "EL-G6 grab-ctx" << okCtx; }
+    bool okProg = ensureTextureProgram();
+    { static int n7=0; if(++n7<=5) qWarning() << "EL-G7 grab-prog" << okProg; }
+    if (!okCtx || !okProg) {
         return QImage();
     }
 
+    { static int n8=0; if(++n8<=5) qWarning() << "EL-G8 grab-bind"; }
     QSize textureSize;
     if (!bindWebRenderFrameTexture(&textureSize)) {
+            { static int n9=0; if(++n9<=5) qWarning() << "EL-G9 grab-bind-FAILED"; }
         qWarning() << "No WebRender EGLImage available for browser frame grab";
         return QImage();
     }
@@ -1713,18 +1721,31 @@ void DeclarativeWebContainer::renderCompositedFrame()
         return;
     }
 
+    { static int n4=0; if(++n4<=5) qWarning() << "EL-R4 past page-check"; }
     const bool completingActiveTabFrame = m_waitingForActiveTabFrame;
 
-    if (!ensureRenderContext() || !ensureTextureProgram()) {
+    { static int n5=0; if(++n5<=8) qWarning() << "EL-R5 vor ensure"; }
+    const bool okCtx = ensureRenderContext();
+    { static int n6=0; if(++n6<=8) qWarning() << "EL-R6 ctx" << okCtx; }
+    const bool okProg = okCtx && ensureTextureProgram();
+    { static int n7=0; if(++n7<=8) qWarning() << "EL-R7 prog" << okProg; }
+    if (!okCtx || !okProg) {
         { static int n2=0; if(++n2<=3) qWarning() << "EL-R2 ctx/program FAILED"; }
         return;
     }
 
+    { static int nr8=0; if(++nr8<=8) qWarning() << "EL-R8 render-bind"; }
     QSize textureSize;
     if (!bindWebRenderFrameTexture(&textureSize)) {
+        { static int nr9=0; if(++nr9<=8) qWarning() << "EL-R9 render-bind-FAILED"; }
         static int noImageWarnings = 0;
         if (++noImageWarnings <= 5) {
             qWarning() << "No WebRender EGLImage available for browser frame";
+        }
+        // Regal war leer - Gecko um ein neues Composite bitten statt
+        // rekursiv erneut zu greifen (sonst Endlosschleife).
+        if (m_mozWindow) {
+            m_mozWindow->scheduleUpdate();
         }
         return;
     }

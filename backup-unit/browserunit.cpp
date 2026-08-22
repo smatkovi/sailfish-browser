@@ -20,7 +20,7 @@ void stop_browser()
     QProcess ps;
     auto get_browser_pids = [&ps]() { 
         std::set<int> res;
-        ps.execute("pgrep", {"-f", "sailfish-browser-next"});
+        ps.execute("pgrep", {"-f", "sailfish-browser-next153"});
         if (ps.exitStatus() == QProcess::CrashExit) {
             qCDebug(lcBackupLog) << "pgrep failed";
             return res;
@@ -58,7 +58,7 @@ void stop_browser()
         usleep(sec0_1);
 
         if (!--counter)
-            throw std::runtime_error("Can't interrupt sailfish-browser-next");
+            throw std::runtime_error("Can't interrupt sailfish-browser-next153");
         else if (counter < 6)
             sig = SIGKILL;
         else if (counter < 15)
@@ -74,7 +74,7 @@ const QString moz_dir = browser_dir + "/.mozilla";
 const QString cache_dir = ".cache/org.sailfishos/browser";
 // files
 const QString bookmarks = "/bookmarks.json";
-const QString database = "/sailfish-browser-next.sqlite";
+const QString database = "/sailfish-browser-next153.sqlite";
 const QString keys = "/key3.db";
 const QString signons = "/signons.sqlite";
 
@@ -94,9 +94,9 @@ const QVariantMap info = {
 };
 
 // old paths
-const QString old_browser_dir = ".local/share/org.sailfishos/sailfish-browser-next";
+const QString old_browser_dir = ".local/share/org.sailfishos/sailfish-browser-next153";
 const QString old_moz_dir = ".mozilla/mozembed";
-const QString old_cache_dir = ".cache/org.sailfishos/sailfish-browser-next";
+const QString old_cache_dir = ".cache/org.sailfishos/sailfish-browser-next153";
 
 }
 

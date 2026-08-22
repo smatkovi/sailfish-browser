@@ -1,0 +1,3 @@
+[D-BUS Service]
+Name=org.sailfishos.captiveportalnext153
+Exec=/usr/bin/invoker -s --type=generic /usr/bin/sailjail -p sailfish-captiveportal-next153.desktop /usr/bin/sailfish-captiveportal-next153 -prestart -captiveportal

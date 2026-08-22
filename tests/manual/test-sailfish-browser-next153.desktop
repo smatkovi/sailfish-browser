@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=Test Web Browser
+Icon=/opt/tests/sailfish-browser-next153/manual/icon-launcher-testbrowser.png
+Exec=/usr/bin/invoker --type=browser,silica-qt5 -A -- /usr/bin/sailfish-browser-next153 file:///opt/tests/sailfish-browser-next153/manual/testpage.html
+Comment=Test Sailfish UI application

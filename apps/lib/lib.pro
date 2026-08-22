@@ -1,5 +1,5 @@
 TEMPLATE = lib
-TARGET = sailfishbrowser-next
+TARGET = sailfishbrowser-next153
 
 QT += qml quick gui gui-private dbus concurrent sql
 

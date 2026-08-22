@@ -78,17 +78,17 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 
     QString translationPath("/usr/share/translations/");
     QTranslator engineeringEnglish;
-    engineeringEnglish.load("sailfish-captiveportal-next_eng_en", translationPath);
+    engineeringEnglish.load("sailfish-captiveportal-next153_eng_en", translationPath);
     qApp->installTranslator(&engineeringEnglish);
 
     QTranslator translator;
-    translator.load(QLocale(), "sailfish-captiveportal-next", "-", translationPath);
+    translator.load(QLocale(), "sailfish-captiveportal-next153", "-", translationPath);
     qApp->installTranslator(&translator);
 
     //% "Network login portal"
-    view->setTitle(qtTrId("sailfish-captiveportal-next-ap-name"));
+    view->setTitle(qtTrId("sailfish-captiveportal-next153-ap-name"));
 
-    app->setApplicationName(QStringLiteral("captiveportal-next"));
+    app->setApplicationName(QStringLiteral("captiveportal-next153"));
     app->setOrganizationName(QStringLiteral("org.sailfishos"));
 
     const char *uri = "Sailfish.Browser";

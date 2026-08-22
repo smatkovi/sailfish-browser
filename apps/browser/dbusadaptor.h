@@ -19,7 +19,7 @@
 class DBusAdaptor : public QDBusAbstractAdaptor
 {
     Q_OBJECT
-    Q_CLASSINFO("D-Bus Interface", "org.sailfishos.browsernext")
+    Q_CLASSINFO("D-Bus Interface", "org.sailfishos.browsernext153")
 
 public:
     DBusAdaptor(BrowserService *browserService);
@@ -27,7 +27,7 @@ public:
 public slots:
     // these two calls are kept in this service for compatibility
     // but any calls that require the UI to be shown should be added to
-    // the UIServiceDBusAdaptor org.sailfishos.browsernext.ui service instead
+    // the UIServiceDBusAdaptor org.sailfishos.browsernext153.ui service instead
     void openUrl(const QStringList &args);
     void activateNewTabView();
 
@@ -41,7 +41,7 @@ private:
 class UIServiceDBusAdaptor : public QDBusAbstractAdaptor
 {
     Q_OBJECT
-    Q_CLASSINFO("D-Bus Interface", "org.sailfishos.browsernext.ui")
+    Q_CLASSINFO("D-Bus Interface", "org.sailfishos.browsernext153.ui")
 
 public:
     UIServiceDBusAdaptor(BrowserUIService *browserService);

@@ -1,6 +1,6 @@
 QT += qml quick gui dbus
 # The name of your app
-TARGET = sailfish-captiveportal-next
+TARGET = sailfish-captiveportal-next153
 
 CONFIG += link_pkgconfig
 
@@ -26,8 +26,8 @@ TS_PATH = $$PWD
 # Shared translations in browser.pro should be skipped from other subprojects
 # to avoid duplicated ids
 #TS_PATH += $$PWD/../shared
-TS_FILE = $$OUT_PWD/sailfish-captiveportal-next.ts
-EE_QM = $$OUT_PWD/sailfish-captiveportal-next_eng_en.qm
+TS_FILE = $$OUT_PWD/sailfish-captiveportal-next153.ts
+EE_QM = $$OUT_PWD/sailfish-captiveportal-next153_eng_en.qm
 include(../../translations/translations.pri)
 
 include(../../defaults.pri)

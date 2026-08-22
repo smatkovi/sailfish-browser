@@ -79,14 +79,14 @@ DeclarativeWebPage::DeclarativeWebPage(QObject *parent)
     addMessageListeners(messages);
     const QString sharedPath = QStringLiteral("file:///usr/share/%1/shared")
             .arg(BrowserAppInfo::captivePortal()
-                 ? QStringLiteral("sailfish-captiveportal-next")
-                 : QStringLiteral("sailfish-browser-next"));
+                 ? QStringLiteral("sailfish-captiveportal-next153")
+                 : QStringLiteral("sailfish-browser-next153"));
     loadFrameScript(sharedPath + QStringLiteral("/ViewportFit.js"));
     loadFrameScript(sharedPath + QStringLiteral("/PageMetadata.js"));
 
     if (BrowserAppInfo::captivePortal()) {
         addMessageListener(OPEN_LINK);
-        loadFrameScript("file:///usr/share/sailfish-captiveportal-next/pages/captiveportal.js");
+        loadFrameScript("file:///usr/share/sailfish-captiveportal-next153/pages/captiveportal.js");
     }
 
     connect(this, &DeclarativeWebPage::recvAsyncMessage,
