@@ -44,7 +44,8 @@ Page {
         "popup": _getPopupCapability(),
         "cookie": _getCookieCapability(),
         "camera": PermissionManager.Prompt,
-        "microphone": PermissionManager.Prompt
+        "microphone": PermissionManager.Prompt,
+        "desktop-notification": PermissionManager.Prompt
     }
 
     function setPermissionTypesModel(permissions) {
@@ -78,6 +79,12 @@ Page {
                    type: "microphone",
                    capability: permissions["microphone"]
                })
+
+        permissionTypesModel.append({
+            title: qsTr("Notifications"),
+            type: "desktop-notification",
+            capability: permissions["desktop-notification"]
+        })
     }
 
     PermissionFilterProxyModel {

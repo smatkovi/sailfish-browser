@@ -100,6 +100,14 @@ Page {
                                         sensitiveData: true
                                     })
 
+        permissionTypesModel.append({
+            title: qsTr("Notifications"),
+            type: "desktop-notification",
+            capability: PermissionManager.Prompt,
+            iconSource: "image://theme/icon-m-browser-notifications",
+            sensitiveData: false
+        })
+
     }
 
     Component.onCompleted: initPermissionTypesModel()
