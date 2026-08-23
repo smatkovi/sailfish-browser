@@ -53,7 +53,9 @@ Requires: sailfish-policy >= 0.3.31
 Requires: libkeepalive >= 1.7.0
 Requires: sailfish-components-pickers-qt5 >= 0.1.7
 Requires: nemo-qml-plugin-notifications-qt5 >= 1.0.12
-Requires: mapplauncherd-booster-browser
+# The stock browser booster preloads the stock engine; a -next153 process would
+# then map two libxul copies. The icon starts through D-Bus activation, so the
+# booster is not needed here.
 Requires: nemo-qml-plugin-connectivity
 Requires: jolla-settings >= 0.11.29
 Requires: jolla-settings-system >= 1.0.70
@@ -125,7 +127,6 @@ fi
 %{_datadir}/translations/settings-%{name}_eng_en.qm
 %{_datadir}/dbus-1/services/*.service
 %{_oneshotdir}/*
-%{_userunitdir}/user-session.target.d/50-sailfish-browser-next153.conf
 # Let main package own import root level
 %dir %{_libdir}/qt5/qml/org/sailfishos/browsernext153
 %{_libdir}/libsailfishbrowser-next153.so.*

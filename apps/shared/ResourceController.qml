@@ -151,6 +151,9 @@ Item {
                 property string alertName
                 appName: "Browser"
                 appIcon: "icon-launcher-browser"
+                // The category supplies banner, sound and LED defaults; setting
+                // x-nemo-feedback by hand would override them.
+                category: "x-nemo.messaging.im"
                 urgency: Notification.Normal
                 onClicked: {
                     WebEngine.notifyObservers("embed:alert-clicked", { "name": alertName })
