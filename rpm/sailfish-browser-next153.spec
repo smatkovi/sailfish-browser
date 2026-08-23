@@ -9,7 +9,7 @@ Name:       sailfish-browser-next153
 
 Summary:    Sailfish Browser
 Version:    3.0.0
-Release:    1
+Release:    2
 License:    MPLv2.0
 Url:        https://github.com/sailfishos/sailfish-browser-next153
 Source0:    %{name}-%{version}.tar.bz2
@@ -144,3 +144,9 @@ fi
 %files tests
 %{_datadir}/applications/test-%{name}.desktop
 /opt/tests/%{name}
+
+%changelog
+* Sun Aug 23 2026 Sebastian Matkovich <sebastianmatkovich@gmail.com> - 3.0.0-2
+- Show web notifications as system notifications through Nemo.Notifications
+- Start without the stock browser booster, which preloads the stock engine
+- Request the Notifications sailjail permission
