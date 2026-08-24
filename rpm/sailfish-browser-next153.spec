@@ -9,7 +9,7 @@ Name:       sailfish-browser-next153
 
 Summary:    Sailfish Browser
 Version:    3.0.0
-Release:    3
+Release:    4
 License:    MPLv2.0
 Url:        https://github.com/sailfishos/sailfish-browser-next153
 Source0:    %{name}-%{version}.tar.bz2
@@ -101,6 +101,8 @@ chmod +x %{buildroot}/%{_oneshotdir}/*
 
 mkdir -p %{buildroot}/%{_sharedstatedir}/environment/nemo/
 cp -f data/70-browser-next153.conf %{buildroot}/%{_sharedstatedir}/environment/nemo/
+mkdir -p %{buildroot}%{_datadir}/icons/hicolor/172x172/apps
+cp -f data/icons/sailfish-browser-next153.png %{buildroot}%{_datadir}/icons/hicolor/172x172/apps/sailfish-browser-next153.png
 
 %post
 /sbin/ldconfig || :
@@ -119,6 +121,7 @@ fi
 %{_bindir}/%{name}
 %{_bindir}/%{captiveportal}
 %{_datadir}/applications/%{name}.desktop
+%{_datadir}/icons/hicolor/172x172/apps/%{name}.png
 %{_datadir}/applications/%{captiveportal}.desktop
 %{_datadir}/%{name}
 %{_datadir}/%{captiveportal}
