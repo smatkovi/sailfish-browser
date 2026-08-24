@@ -9,7 +9,7 @@ Name:       sailfish-browser-next153
 
 Summary:    Sailfish Browser
 Version:    3.0.0
-Release:    4
+Release:    5
 License:    MPLv2.0
 Url:        https://github.com/sailfishos/sailfish-browser-next153
 Source0:    %{name}-%{version}.tar.bz2

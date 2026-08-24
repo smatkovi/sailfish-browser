@@ -101,10 +101,20 @@ Page {
                                     })
 
         permissionTypesModel.append({
-            title: qsTr("Notifications"),
+            //% "Notifications"
+            title: qsTrId("sailfish_browser-ti-notifications"),
             type: "desktop-notification",
             capability: PermissionManager.Prompt,
             iconSource: "image://theme/icon-m-browser-notifications",
+            sensitiveData: false
+        })
+
+        permissionTypesModel.append({
+            //% "Autoplay"
+            title: qsTrId("sailfish_browser-ti-autoplay"),
+            type: "autoplay-media",
+            capability: PermissionManager.Deny,
+            iconSource: "image://theme/icon-m-browser-sound",
             sensitiveData: false
         })
 
