@@ -9,7 +9,7 @@ Name:       sailfish-browser-next153
 
 Summary:    Sailfish Browser
 Version:    3.0.0
-Release:    5
+Release:    6
 License:    MPLv2.0
 Url:        https://github.com/sailfishos/sailfish-browser-next153
 Source0:    %{name}-%{version}.tar.bz2
@@ -149,6 +149,16 @@ fi
 /opt/tests/%{name}
 
 %changelog
+* Sun Aug 24 2026 Sebastian Matkovich <sebastianmatkovich@gmail.com> - 3.0.0-6
+- Autoplay is now listed on the permissions page and actually does something:
+  Allow and Block map to media.autoplay.default through the engine settings,
+  the same way popups and cookies do. The icon for it (icon-m-browser-sound)
+  had been sitting unused in the theme all along
+- The notifications entry added yesterday used qsTr(), which never reaches the
+  translation files - switched to qsTrId with a source string
+- The 153 build has its own icon now, so it can be told apart from the 140
+  build in the launcher
+
 * Sun Aug 23 2026 Sebastian Matkovich <sebastianmatkovich@gmail.com> - 3.0.0-3
 - Notification permission listed in the site and global permission pages
 

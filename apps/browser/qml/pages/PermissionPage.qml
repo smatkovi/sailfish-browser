@@ -26,12 +26,26 @@ Page {
             if (permission === PermissionManager.Deny) {
                 WebEngineSettings.popupEnabled = false
             }
+        } else if (type === "autoplay-media") {
+            if (permission === PermissionManager.Allow) {
+                WebEngineSettings.autoplayEnabled = true
+            } else if (permission === PermissionManager.Deny) {
+                WebEngineSettings.autoplayEnabled = false
+            }
         } else if (type === "cookie") {
             if (permission === PermissionManager.Allow) {
                 WebEngineSettings.cookieBehavior = WebEngineSettings.AcceptAll
             } else if (permission === PermissionManager.Deny) {
                 WebEngineSettings.cookieBehavior = WebEngineSettings.BlockAll
             }
+        }
+    }
+
+    function _getAutoplayCapability() {
+        if (WebEngineSettings.autoplayEnabled) {
+            return PermissionManager.Allow
+        } else {
+            return PermissionManager.Deny
         }
     }
 
@@ -113,7 +127,7 @@ Page {
             //% "Autoplay"
             title: qsTrId("sailfish_browser-ti-autoplay"),
             type: "autoplay-media",
-            capability: PermissionManager.Deny,
+            capability: _getAutoplayCapability(),
             iconSource: "image://theme/icon-m-browser-sound",
             sensitiveData: false
         })
