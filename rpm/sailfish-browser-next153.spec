@@ -101,6 +101,13 @@ chmod +x %{buildroot}/%{_oneshotdir}/*
 
 mkdir -p %{buildroot}/%{_sharedstatedir}/environment/nemo/
 cp -f data/70-browser-next153.conf %{buildroot}/%{_sharedstatedir}/environment/nemo/
+# Theme icons for the extensions page, installed the way Patchmanager does it.
+for z in 1.0 1.25 1.5 1.5-large 1.75 2.0 2.5; do
+    mkdir -p %{buildroot}%{_datadir}/themes/sailfish-default/silica/z$z/icons-monochrome
+    cp -f data/icons/theme/z$z/*.png \
+        %{buildroot}%{_datadir}/themes/sailfish-default/silica/z$z/icons-monochrome/
+done
+
 mkdir -p %{buildroot}%{_datadir}/icons/hicolor/172x172/apps
 cp -f data/icons/sailfish-browser-next153.png %{buildroot}%{_datadir}/icons/hicolor/172x172/apps/sailfish-browser-next153.png
 
@@ -122,6 +129,7 @@ fi
 %{_bindir}/%{captiveportal}
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/icons/hicolor/172x172/apps/%{name}.png
+%{_datadir}/themes/sailfish-default/silica/z*/icons-monochrome/icon-m-browser-extensions*.png
 %{_datadir}/applications/%{captiveportal}.desktop
 %{_datadir}/%{name}
 %{_datadir}/%{captiveportal}
