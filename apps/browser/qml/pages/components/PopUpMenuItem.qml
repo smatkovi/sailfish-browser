@@ -231,6 +231,19 @@ Item {
                 height: Theme.itemSizeSmall
                 iconWidth: root.iconWidth
                 horizontalOffset: root.horizontalOffset
+                //% "Extensions"
+                text: qsTrId("sailfish_browser-la-extensions")
+                iconSource: "image://theme/icon-m-browser-extensions"
+                onClicked: {
+                    overlay.animator.showChrome()
+                    pageStack.push(Qt.resolvedUrl("../ExtensionsPage.qml"))
+                }
+            }
+
+            OverlayListItem {
+                height: Theme.itemSizeSmall
+                iconWidth: root.iconWidth
+                horizontalOffset: root.horizontalOffset
                 //% "Settings"
                 text: qsTrId("sailfish_browser-la-setting")
                 iconSource: "image://theme/icon-m-setting"
