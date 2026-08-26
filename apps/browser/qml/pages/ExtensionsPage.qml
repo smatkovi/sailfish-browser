@@ -17,6 +17,8 @@ Page {
 
     property bool observerAdded
 
+    signal loadPage(string url, bool newTab)
+
     function requestList() {
         if (!observerAdded) {
             WebEngine.addObserver("embed:addons")
@@ -42,6 +44,14 @@ Page {
             id: item
             contentHeight: column.height + Theme.paddingMedium * 2
             menu: contextMenuComponent
+
+            onClicked: {
+                if (!model.optionsURL) {
+                    return
+                }
+                pageStack.pop()
+                page.loadPage(model.optionsURL, true)
+            }
 
             Column {
                 id: column
@@ -75,6 +85,7 @@ Page {
                     verticalCenter: parent.verticalCenter
                 }
                 automaticCheck: false
+                width: Theme.itemSizeMedium
                 checked: model.enabled
                 onClicked: WebEngine.notifyObservers("embedui:addons",
                                                      { msg: "setEnabled",

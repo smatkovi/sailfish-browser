@@ -236,7 +236,8 @@ Item {
                 iconSource: "image://theme/icon-m-browser-extensions"
                 onClicked: {
                     overlay.animator.showChrome()
-                    pageStack.push(Qt.resolvedUrl("../ExtensionsPage.qml"))
+                    var extensionsPage = pageStack.push(Qt.resolvedUrl("../ExtensionsPage.qml"))
+                    extensionsPage.loadPage.connect(overlay.toolBar.loadPage)
                 }
             }
 
