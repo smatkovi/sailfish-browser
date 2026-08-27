@@ -9,7 +9,7 @@ Name:       sailfish-browser-next153
 
 Summary:    Sailfish Browser
 Version:    3.0.0
-Release:    6
+Release:    7
 License:    MPLv2.0
 Url:        https://github.com/sailfishos/sailfish-browser-next153
 Source0:    %{name}-%{version}.tar.bz2
@@ -157,6 +157,9 @@ fi
 /opt/tests/%{name}
 
 %changelog
+* Thu Aug 27 2026 Sebastian Matkovich <sebastianmatkovich@gmail.com> - 3.0.0-7
+- No functional change; rebuilt against the reworked extension bindings.
+
 * Sun Aug 24 2026 Sebastian Matkovich <sebastianmatkovich@gmail.com> - 3.0.0-6
 - Autoplay is now listed on the permissions page and actually does something:
   Allow and Block map to media.autoplay.default through the engine settings,
